@@ -1,5 +1,0 @@
-tasya
-
-fitria
-
-anggraini
