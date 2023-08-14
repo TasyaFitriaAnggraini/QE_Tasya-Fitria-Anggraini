@@ -1,2 +1,6 @@
-# QE_Tasya-Fitria-Anggraini
-QualityEngineer_Tasya-Fitria-Anggraini
+# Be The Best Top Search Quality Engineer
+
+### Nama    : Tasya Fitria Anggraini
+### Kelas   : Reguler A
+### Mentor  : Trino Hutasoit
+### Universitas Negeri Semarang
