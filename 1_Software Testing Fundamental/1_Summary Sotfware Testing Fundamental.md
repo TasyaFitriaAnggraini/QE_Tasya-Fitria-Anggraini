@@ -37,13 +37,13 @@ Jenis pengujian yang memverifikasi bahwa setiap aplikasi telah beroperasi sesuai
 ### Non-Functional Testing
 
 <aside>
-pengujian suatu aplikasi seperti kinerja, keandalan, kegunaan, keamanan dilakukan setelah functional testing selesai
+Pengujian suatu aplikasi seperti kinerja, keandalan, kegunaan, keamanan dilakukan setelah functional testing selesai
 </aside>
 
 1. Performance Testing, pengujian perangkat lunak dengan tujuan memastikan aplikasi bekerja dengan baik dibawah beban kerja yang diharapkan
-   _Speed
-   _Scalability
-   _Stability
+   - Speed
+   - Scalability
+   - Stability
 1. Penetration Testing
 
 ### Maintenance
