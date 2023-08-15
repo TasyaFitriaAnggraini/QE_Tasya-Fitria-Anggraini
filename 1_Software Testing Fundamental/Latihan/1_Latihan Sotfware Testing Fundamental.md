@@ -28,8 +28,9 @@ TestComplete mudah diatur dan tidak memerlukan pengetahuan pemrograman. (Namun, 
 #### 2. Sebutkan dan jelaskan urgensi / pentingnya proses pengujian pada perangkat lunak! (minimal 3 poin)
 
 Jawab: 
-1. Menjaga Kualitas Produk dan Keamanan
 <aside>
+1. Menjaga Kualitas Produk dan Keamanan
+
 Pengujian perangkat lunak bertujuan untuk mengidentifikasi kesalahan (bug) dan masalah lainnya dalam perangkat lunak sebelum perilisan ke publik. Dengan menguji perangkat lunak secara menyeluruh, tim pengembangan dapat menemukan dan memperbaiki bug, kerentanan keamanan, dan masalah kinerja yang dapat mempengaruhi pengalaman pengguna. Pengujian yang komprehensif membantu memastikan bahwa perangkat lunak berjalan sesuai dengan harapan, meminimalkan risiko kegagalan, dan meningkatkan kepercayaan pengguna terhadap produk.
 </aside>
 
