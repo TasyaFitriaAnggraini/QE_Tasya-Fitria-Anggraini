@@ -2,7 +2,7 @@
 
 ## Soal Software Testing Fundamental
 
-### **Soal Prioritas 1**
+### Soal Prioritas 1
 #### 1. Sebutkan dan jelaskan berbagai automation testing tool yang dapat digunakan (minimal 3)!
 
 Jawab:
@@ -34,10 +34,19 @@ Pengujian perangkat lunak bertujuan untuk mengidentifikasi kesalahan (bug) dan m
 </aside>
 
 2. Menghemat Biaya
+<aside>
 Jika bug dan masalah lainnya tidak terdeteksi dan diperbaiki sebelum perilisan, mereka mungkin akan muncul setelah perangkat lunak digunakan oleh pengguna. Perbaikan pasca rilis umumnya lebih mahal dan rumit daripada memperbaiki masalah pada tahap pengembangan awal. Pengujian yang efektif dapat membantu mengidentifikasi dan memperbaiki masalah sejak dini, mengurangi risiko perbaikan yang mahal dan menjaga reputasi produk yang baik.
+</aside>
 
 3. Menjaga Kepuasaan Customer
+<aside>
 Pengujian perangkat lunak membantu memastikan bahwa perangkat lunak memenuhi kebutuhan dan harapan pengguna. Dengan menguji fungsionalitas, kinerja, dan keseluruhan pengalaman pengguna, tim pengembangan dapat memastikan bahwa perangkat lunak bekerja sesuai yang diharapkan oleh pengguna. Hal ini berkontribusi pada kepuasan pengguna, loyalitas, dan kemungkinan adopsi produk yang lebih tinggi.
+</aside>
+
+### Soal Prioritas 2
+#### 1. Tuliskan secara lengkap kesimpulan dari hasil pengujian berikut!
+![Image](D:\QE_Tasya-Fitria-Anggraini\1_Software Testing Fundamental\Screenshot\Screenshot from 2023-01-02 07-37-07.png)
+
 
 
 
