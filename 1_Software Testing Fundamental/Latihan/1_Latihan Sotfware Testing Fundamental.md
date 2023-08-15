@@ -45,7 +45,9 @@ Pengujian perangkat lunak membantu memastikan bahwa perangkat lunak memenuhi keb
 
 ### Soal Prioritas 2
 #### 1. Tuliskan secara lengkap kesimpulan dari hasil pengujian berikut!
-![Image](D:\QE_Tasya-Fitria-Anggraini\1_Software Testing Fundamental\Screenshot\Screenshot from 2023-01-02 07-37-07.png)
+![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/1_Software%20Testing%20Fundamental/Screenshot/Screenshot%20from%202023-01-02%2007-37-07.png)
+
+Jawab: 
 
 
 
