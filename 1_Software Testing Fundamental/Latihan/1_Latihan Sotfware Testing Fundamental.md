@@ -29,7 +29,9 @@ TestComplete mudah diatur dan tidak memerlukan pengetahuan pemrograman. (Namun, 
 
 Jawab: 
 1. Menjaga Kualitas Produk dan Keamanan
+<aside>
 Pengujian perangkat lunak bertujuan untuk mengidentifikasi kesalahan (bug) dan masalah lainnya dalam perangkat lunak sebelum perilisan ke publik. Dengan menguji perangkat lunak secara menyeluruh, tim pengembangan dapat menemukan dan memperbaiki bug, kerentanan keamanan, dan masalah kinerja yang dapat mempengaruhi pengalaman pengguna. Pengujian yang komprehensif membantu memastikan bahwa perangkat lunak berjalan sesuai dengan harapan, meminimalkan risiko kegagalan, dan meningkatkan kepercayaan pengguna terhadap produk.
+</aside>
 
 2. Menghemat Biaya
 Jika bug dan masalah lainnya tidak terdeteksi dan diperbaiki sebelum perilisan, mereka mungkin akan muncul setelah perangkat lunak digunakan oleh pengguna. Perbaikan pasca rilis umumnya lebih mahal dan rumit daripada memperbaiki masalah pada tahap pengembangan awal. Pengujian yang efektif dapat membantu mengidentifikasi dan memperbaiki masalah sejak dini, mengurangi risiko perbaikan yang mahal dan menjaga reputasi produk yang baik.
