@@ -57,29 +57,22 @@ Kesimpulan dari hasil pengujian diatas, yaitu:
 
 ### Soal Eksplorasi
 #### 1. Tulis kesimpulan dari hasil pengujian berikut.
+![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/1_Software%20Testing%20Fundamental/Screenshot/eksplorasi_qe_01.png)\
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Jawab:
+Kesimpulan dari hasil pengujian diatas, yaitu:
+-   Pada baris ke-1 bahwa kode pengujian sudah berhasil dijalankan dengan durasi waktu pengujian selama 21,7 detik. Hal tersebut total waktu yang diperlukan untuk menjalankan test case tertentu. Waktu pengujian penting untuk memahami berapa lama sistem dapat mempertahankan beban. 
+-   Pada baris ke-2 dan ke-3 menunjukkan 2 skenario (first_scenario dan second_scenario) pengujian yang telah berjalan.
+    - **first_scenario**
+    <aside>
+    Skenario yang dijalankan oleh 5 Virtual User (VU), dengan rata-rata waktu respon untuk permintaan dalam skenario ini adalah 504.59ms. Persentil waktu respon (p90)adalah sekitar 540.54ms. Dengan begitu "first_scenario" berhasil dijalankan oleh 5 VU dengan rata-rata waktu respon sekitar 500ms. Skenario ini tampaknya berjalan lancar tanpa kegagalan.
+    </aside>
+    - **second_scenario**
+    <aside>
+    Skenario ini dijalankan oleh berbagai jumlah VU, mungkin terdapat variasi selama pengujian. Dengan rata-rata waktu respon, persentil, dan statistik lainnya mungkin bervariasi sesuai dengan jumlah VU yang digunakan.Dengan begitu "second_scenario" menghasilkan hasil yang bervariasi, termasuk beberapa iterasi yang gagal. Hasil ini mungkin dapat dijelaskan lebih lanjut dengan menganalisis data lebih mendalam untuk setiap kasus gagal dan berhasil.
+    </aside>
+-   Pada baris ke-4 skenario yang diuji berhasil dengan baik dan sistem merespons permintaan dengan sukses (kode status 200).
+-   Dari hasil menampilan pengujian didapatkan response code 200 diantaranya menampilkan checks, data_received, data_sent, http_req_blocked, dsb. 
 
 
 
