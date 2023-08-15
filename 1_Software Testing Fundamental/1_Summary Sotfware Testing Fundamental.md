@@ -43,7 +43,7 @@ pengujian suatu aplikasi seperti kinerja, keandalan, kegunaan, keamanan dilakuka
 1. Performance Testing, pengujian perangkat lunak dengan tujuan memastikan aplikasi bekerja dengan baik dibawah beban kerja yang diharapkan
    _ Speed
    _ Scalability
-   \_ Stability
+   _ Stability
 1. Penetration Testing
 
 ### Maintenance
