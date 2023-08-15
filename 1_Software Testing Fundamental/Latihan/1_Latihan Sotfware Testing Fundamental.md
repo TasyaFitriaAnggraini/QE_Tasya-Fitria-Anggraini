@@ -67,6 +67,7 @@ Kesimpulan dari hasil pengujian diatas, yaitu:
     <aside>
     Skenario yang dijalankan oleh 5 Virtual User (VU), dengan rata-rata waktu respon untuk permintaan dalam skenario ini adalah 504.59ms. Persentil waktu respon (p90)adalah sekitar 540.54ms. Dengan begitu "first_scenario" berhasil dijalankan oleh 5 VU dengan rata-rata waktu respon sekitar 500ms. Skenario ini tampaknya berjalan lancar tanpa kegagalan.
     </aside>
+    
     - **second_scenario**
     <aside>
     Skenario ini dijalankan oleh berbagai jumlah VU, mungkin terdapat variasi selama pengujian. Dengan rata-rata waktu respon, persentil, dan statistik lainnya mungkin bervariasi sesuai dengan jumlah VU yang digunakan.Dengan begitu "second_scenario" menghasilkan hasil yang bervariasi, termasuk beberapa iterasi yang gagal. Hasil ini mungkin dapat dijelaskan lebih lanjut dengan menganalisis data lebih mendalam untuk setiap kasus gagal dan berhasil.
