@@ -48,6 +48,13 @@ Pengujian perangkat lunak membantu memastikan bahwa perangkat lunak memenuhi keb
 ![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/1_Software%20Testing%20Fundamental/Screenshot/Screenshot%20from%202023-01-02%2007-37-07.png)
 
 Jawab: 
+Kesimpulan dari hasil pengujian diatas, yaitu:
+-   Pada gambar diatas, bahwa TesAdd_1 dan TestSubstract_1 diketahui passed artinya Pengujian ini berhasil dengan waktu eksekusi 0.0ms. Ini mengindikasikan bahwa operasi penambahan yang diuji dalam kasus ini berjalan dengan baik dan sesuai harapan sehingga menghasilkan icon ceklis atau berhasil.
+-   Sedangkan pada TestAdd_2 dan TestSubstract_2 terlihat failed ketika dilakukan testing dikarenakan komponen yang diuji tidak konsisten atau mengalami bug sehingga menghasilkan icon silang atau gagal.
+
+### Soal Eksplorasi
+#### 1. Tulis kesimpulan dari hasil pengujian berikut.
+
 
 
 
