@@ -20,10 +20,10 @@ Proses verifikasi sistem atau program komputer untuk memenuhi spesifikasi requir
 
 - Basic linux/unix commands
 - Dapat menggunakan dan memahami test management tools (TestLink, PracticTest, TestRail)
-- Dapat menggunakan dan memahami tracking management tools (sebuah software yang digunakan dalam mengolah suatu proyek atau development software agar berjalan secara efisien dan efektif seperti Jira Software dan PivotalTracker)
+- Dapat menggunakan dan memahami tracking management tools, sebuah software yang digunakan dalam mengolah suatu proyek atau development software agar berjalan secara efisien dan efektif (Jira Software dan PivotalTracker)
 - Dapat menggunakan dan memahami automation testing tools
 
-### Apa yang harus Dilakukan Software Tester
+## Apa yang harus Dilakukan Software Tester
 
 - Harus memahami kebutuhan dokumen untuk pembuatan sebuah sistem atau fitur
 - Membuat test case, yaitu serangkaian rancangan, tindakan dan yang ingin dilakukan untuk memverifikasi fitur tertentu atau fungsi sebuah aplikasi
