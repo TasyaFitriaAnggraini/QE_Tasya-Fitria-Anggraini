@@ -25,8 +25,9 @@ Tester harus dapat menulis skenario pengujian yang jelas dan dokumentasi penguji
 pendekatan umum terhadap pengujian perangkat lunak mencakup cakupan pengujian, strategi pengujian, jadwal, dan sumber daya yang akan digunakan.
 </aside>
 
-- Test Cases (Kasus Uji)
 <aside>
+- Test Cases (Kasus Uji)
+
 Untuk setiap kasus uji, Anda akan menyertakan langkah-langkah pengujian, data uji, prasyarat, dan harapan hasil.
 </aside>
 
