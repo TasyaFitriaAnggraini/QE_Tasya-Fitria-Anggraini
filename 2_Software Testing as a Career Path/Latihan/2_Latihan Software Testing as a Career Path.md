@@ -24,10 +24,24 @@ Tester harus dapat menulis skenario pengujian yang jelas dan dokumentasi penguji
 <aside>
 pendekatan umum terhadap pengujian perangkat lunak mencakup cakupan pengujian, strategi pengujian, jadwal, dan sumber daya yang akan digunakan.
 </aside>
+
 - Test Cases (Kasus Uji)
+<aside>
 Untuk setiap kasus uji, Anda akan menyertakan langkah-langkah pengujian, data uji, prasyarat, dan harapan hasil.
+</aside>
+
 - Bug Reports (Laporan Bug)
+<aside>
 Jika menemukan masalah atau bug selama pengujian,perlu adanya dokumentasi dengan baik. Mencakup langkah-langkah untuk mereproduksi masalah, data lingkungan, serta tingkat urgensi dan dampak.
-- Test Execution Results (Hasil Eksekusi Pengujian)Laporan tentang hasil pengujian yang telah dilakukan. Mencakup informasi tentang apakah skenario pengujian berhasil atau gagal, serta detail tentang masalah yang mungkin ditemukan.
-- Summary and Conclusion (Ringkasan dan Kesimpulan)Sertakan ringkasan dari hasil pengujian secara keseluruhan. Dapat menyajikan kesimpulan mengenai kualitas perangkat lunak dan saran untuk perbaikan.
+</aside>
+
+- Test Execution Results (Hasil Eksekusi Pengujian)
+<aside>
+Laporan tentang hasil pengujian yang telah dilakukan. Mencakup informasi tentang apakah skenario pengujian berhasil atau gagal, serta detail tentang masalah yang mungkin ditemukan.
+</aside>
+
+- Summary and Conclusion (Ringkasan dan Kesimpulan)
+<aside>
+Sertakan ringkasan dari hasil pengujian secara keseluruhan. Dapat menyajikan kesimpulan mengenai kualitas perangkat lunak dan saran untuk perbaikan.
+</aside>
 </aside>
