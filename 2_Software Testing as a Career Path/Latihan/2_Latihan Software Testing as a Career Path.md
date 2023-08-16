@@ -21,6 +21,7 @@ Bagi seorang software tester, keterampilan analitis sangatlah penting dalam meng
 Tester harus dapat menulis skenario pengujian yang jelas dan dokumentasi pengujian yang baik untuk menjelaskan temuan dan hasil pengujian. Berikut komponen hasil pengujian:
 
 - Test Plan (Rencana Pengujian)
+
 pendekatan umum terhadap pengujian perangkat lunak mencakup cakupan pengujian, strategi pengujian, jadwal, dan sumber daya yang akan digunakan.
 - Test Cases (Kasus Uji)
 Untuk setiap kasus uji, Anda akan menyertakan langkah-langkah pengujian, data uji, prasyarat, dan harapan hasil.
