@@ -1,4 +1,4 @@
-# Resume Software Testing as a Career Path
+# Resume Versioning Control With Git
 
 ## What is Versioning
 
@@ -16,7 +16,9 @@ Pada tahap instalasi dapat langsung download di website resmi dan install git, u
 
 ## Langkah Langkah Menambahkan Proyek yang sudah ada ke Dalam Repository
 
-1.  `git init, disini nanti akan membuat satu folder bernama ".git" yang berfifat hidden (tersembunyi). 
-
+1.  `git init, disini nanti akan membuat satu folder bernama ".git" yang bersifat hidden (tersembunyi). 
 #### Berikut merupakan contoh folder ".git"
 ![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Screenshot%202023-08-18%20144431.png)
+
+1.  git remote add origin <remote_repo_url>
+#### Berikut untuk mendapat repo url
