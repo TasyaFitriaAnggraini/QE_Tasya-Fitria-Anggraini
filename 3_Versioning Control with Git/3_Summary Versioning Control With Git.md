@@ -22,10 +22,13 @@ Pada tahap instalasi dapat langsung download di website resmi dan install git, u
 1.  git remote add <remote_name> <remote_repo_url>, Berikut untuk mendapat repo url
 ![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Screenshot%202023-08-18%20150508.png)
 
+git remote add origin https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini.git
+
 <asidee>
-Untuk mensinkronsasi dengan repository ke visual studio code menggunakan protokol HTTPS dapat melakukan enkripsi didalam data yang dibuat saat pengiriman sehingga dapat meminimalisir data data yang didapat serta dapat dibaca dengan mudah. Sebagai contoh:
-    - git remote add origin https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini.git
+Untuk mensinkronsasi dengan repository ke visual studio code menggunakan protokol HTTPS dapat melakukan enkripsi didalam data yang dibuat saat pengiriman sehingga dapat meminimalisir data data yang didapat serta dapat dibaca dengan mudah
 </asidee>
+
+
 
 
 
