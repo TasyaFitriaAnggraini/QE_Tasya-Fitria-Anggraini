@@ -16,10 +16,7 @@ Pada tahap instalasi dapat langsung download di website resmi dan install git, u
 
 ## Langkah Langkah Menambahkan Proyek yang sudah ada ke Dalam Repository
 
-1.  `git init
-<aside>
-Disini nanti akan membuat satu folder bernama ".git" yang berfifat hidden (tersembunyi). 
-</aside>
+1.  `git init, disini nanti akan membuat satu folder bernama ".git" yang berfifat hidden (tersembunyi). 
 
 #### Berikut merupakan contoh folder ".git"
 ![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Screenshot%202023-08-18%20144431.png)
