@@ -19,16 +19,12 @@ Pada tahap instalasi dapat langsung download di website resmi dan install git, u
 1.  `git init, disini nanti akan membuat satu folder bernama ".git" yang bersifat hidden (tersembunyi). Berikut merupakan contoh folder ".git"
 ![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Screenshot%202023-08-18%20144431.png)
 
-1.  git remote add <remote_name> <remote_repo_url>, Berikut untuk mendapat repo url
+1.  git remote add <remote_name> <remote_repo_url>, Untuk mensinkronsasi dengan repository ke visual studio code menggunakan protokol HTTPS dapat melakukan enkripsi didalam data yang dibuat saat pengiriman sehingga dapat meminimalisir data data yang didapat serta dapat dibaca dengan mudah. Berikut untuk mendapat repo url dan contoh penggunaannya
 ![Image](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Screenshot%202023-08-18%20150508.png)
 
 -   git remote add origin https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini.git
 
-<asidee>
-Untuk mensinkronsasi dengan repository ke visual studio code menggunakan protokol HTTPS dapat melakukan enkripsi didalam data yang dibuat saat pengiriman sehingga dapat meminimalisir data data yang didapat serta dapat dibaca dengan mudah
-</asidee>
-
-1.  git push -u <remote_name>, digunakan dalam sistem kontrol versi Git untuk mengirimkan perubahan yang Anda telah lakukan pada repositori lokal Anda ke repositori yang berada di remote server GitHub. Opsi "-u" menghubungkan cabang lokal yang sedang Anda push dengan cabang pada remote repository yang ditentukan.
+1.  git push -u <remote_name>, digunakan dalam sistem kontrol versi Git untuk mengirimkan perubahan yang Anda telah lakukan pada repositori lokal Anda ke repositori yang berada di remote server GitHub. Opsi "-u" menghubungkan cabang lokal yang sedang Anda push dengan cabang pada remote repository yang ditentukan. Berikut merupakan contoh penggunaan.
 
 -   git push -u origin main
 
