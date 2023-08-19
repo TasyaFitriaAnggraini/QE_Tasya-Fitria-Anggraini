@@ -3,7 +3,7 @@
 ## What is Versioning
 
 <aside>
-Melakukan sebuah pengaturan versi atau pelacakan perubahan dari setiap kode program. Tujuan dari versioning mengetahu kesalahan dari kode pemrograman yang dibuat, mengetahui yang melakukan perubahan kode pemrograman, apa saja yang diubah.
+Melakukan sebuah pengaturan versi atau pelacakan perubahan dari setiap kode program. Tujuan dari versioning mengetahui kesalahan dari kode pemrograman yang dibuat, mengetahui yang melakukan perubahan kode pemrograman, apa saja yang diubah.
 </aside>
 
 ## Git Versioning Control (Git)
