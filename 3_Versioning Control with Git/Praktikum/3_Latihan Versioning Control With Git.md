@@ -1,6 +1,8 @@
 # Section 2 - Versioning Control with Git
 
 ## Soal Version Control With Git
+
+### Soal Prioritas 1
 #### 1. Buatlah sebuah repository github yang sesuai dengan namaKelas_namaKalian
 
 Jawab:
@@ -17,4 +19,13 @@ Jawab:
 
 Jawab:
 
-<img widht="1228" alt="3" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%201/Screenshot%202023-08-19%20130245.png">
+<img widht="1228" alt="3" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%201/Screenshot%202023-08-19%20130304.png">
+
+#### 4. Melakukan commit
+
+Jawab:
+
+<img widht="1680" alt="3" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%201/Screenshot%202023-08-19%20130351.png">
+
+
+### Soal Prioritas 2
