@@ -41,12 +41,18 @@ Jawab:
 
 Jawab:
 
-<img widht="941" alt="1" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110216.png">
+<img widht="941" alt="1" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110401.png">
 
-<img widht="925" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110250.png">
+<img widht="925" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110424.png">
 
-<img widht="941" alt="3" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110401.png">
+<img widht="941" alt="3" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110445.png">
 
-<img widht="925" alt="4" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110424.png">
 
-<img widht="941" alt="5" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110445.png">
+### Soal Eksplorasi
+#### 1. Pilih project terserah kalian, praktekkan salah satu workflow serderhana dan buktikan dengan Screenshoot. Contoh workflow yang dapat digunakan adalah github flow/gitflow/trunk base. Terdapat foto terkait flow yang disebutkan.
+
+Jawab:
+
+##### Gitflow yang dilakukan pada Repository "QE_Tasya-Fitria-Anggraini" yang telah saya buat sebelumnya
+
+##### Gitflow yang dilakukan pada Repository "livesession" yang saya buat saat Live Session
