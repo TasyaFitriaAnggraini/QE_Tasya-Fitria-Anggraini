@@ -65,3 +65,8 @@ Jawab:
 
 Jawab:
 
+<img widht="941" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-20%20231900.png">
+
+<img widht="941" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-20%20231937.png">
+
+<img widht="941" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-20%20231951.png">
