@@ -54,3 +54,4 @@ Untuk melakukan sinkronisasi proyek yang sudah update oleh developer lain menggu
 1. Menyatukan branch           : `git merge <nama branch>`
 
 
+
