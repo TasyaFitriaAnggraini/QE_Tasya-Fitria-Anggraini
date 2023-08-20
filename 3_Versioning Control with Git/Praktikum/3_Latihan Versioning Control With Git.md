@@ -29,3 +29,8 @@ Jawab:
 
 
 ### Soal Prioritas 2
+#### 1. Buatlah branch baru pada Github yang telah kalian buat.
+
+Jawab:
+
+
