@@ -33,4 +33,14 @@ Jawab:
 
 Jawab:
 
+##### Membuat Branch Menggunakan Git Bash pada Terminal Repository yang dibuat
+
+#### 2. Lakukan Pull Request pada branch tersebut sehingga akan menambah hal baru pada branch main/master. terdapat foto terkait Pull Request.
+
+Jawab:
+
+<img widht="941" alt="1" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110136.png">
+
+<img widht="941" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Prioritas%202/Screenshot%202023-08-20%20110136.png">
+
 
