@@ -55,4 +55,8 @@ Jawab:
 
 ##### Gitflow yang dilakukan pada Repository "QE_Tasya-Fitria-Anggraini" yang telah saya buat sebelumnya
 
+<img widht="941" alt="1" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-20%20115925.png">
+
 ##### Gitflow yang dilakukan pada Repository "livesession" yang saya buat saat Live Session
+
+<img widht="941" alt="2" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/3_Versioning%20Control%20with%20Git/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-20%20115938.png">
