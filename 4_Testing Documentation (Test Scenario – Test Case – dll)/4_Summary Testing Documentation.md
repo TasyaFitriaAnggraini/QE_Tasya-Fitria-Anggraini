@@ -14,25 +14,21 @@ Test Scenario adalah sebuah komponen atau dokumen pada proses testing untuk meng
 
 ## Pengertian Test Case
 
-<aside>
 Dari test scenario yang telah dibuat akan dirincikan oleh test case. Test case berfokus pada **How**, bagaimana kita melakukan testing sesuai dengan test scenario yang telah dibuat. Test case disini berisi case postif dan case negatif. Test case teridiri dari :
 -   Pre-Condition
 -   Steps
 -   Expected Result (hasil yang berupa apa yang kita ekspetasikan)
 -   Status
 -   Actual Result
-</aside>
 
 ## Contoh dari Test Case
 
-<aside>
 Test Scenario   : Cek Fungsionalitas Login
 Test Case       :
 -   Masukkan Email Valid dan Password Valid
 -   Masukan email valid dan password invalid
 -   Masukan email invalid dan password salah
 -   Masukan email invalid dan password valid
-</aside>
 
 ## Kesimpulan
 
