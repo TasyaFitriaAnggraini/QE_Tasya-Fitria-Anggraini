@@ -53,6 +53,5 @@ Untuk melakukan sinkronisasi proyek yang sudah update oleh developer lain menggu
 1. Pindah branch               : `git checkout <nama branch>` 
 1. Menyatukan branch           : `git merge <nama branch>`
 
-MEMBUAT KONFLIK DI GIT
 
 
