@@ -32,17 +32,22 @@ https://docs.google.com/document/d/1RwI1ZkQ_Dt4LKgGnNMOfatuJOBXr5UE7/edit?usp=sh
 
 #### Pengujian non fungsional menggunakan Lighthouse berbasis Dekstop pada sepulsa.com
 
-1.  Langkah Langkah :
+1.  Langkah Langkah
+
 -   Buka situs https://www.sepulsa.com/ di browser Google Chrome.
 -   Klik kanan pada halaman web dan pilih "Inspect" dari menu yang muncul atau tekan Ctrl + Shift + I pada keyboard Anda.
 -   Setelah panel Inspect terbuka, klik tab "Lighthouse" di bagian atas.
 -   Pilih perangkat dekstop yang ingin Anda gunakan untuk simulasi.
 -   Setelah Anda memilih perangkat dekstop, halaman web akan secara otomatis di-refresh dan ditampilkan dalam mode simulasi perangkat dekstop.
--   Klik tombol "Generate report" untuk memulai pengujian.
+-   Klik tombol "Analyze page Load" untuk memulai pengujian.
 -   Tunggu beberapa saat hingga proses pengujian selesai.
 -   Setelah pengujian selesai, Lighthouse akan memberikan laporan hasil pengujian dalam beberapa kategori, seperti performa dan aksesibilitas
 
 2.  Screenshot
+
+![Gambar Dekstop](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/4_Testing%20Documentation%20(Test%20Scenario%20%E2%80%93%20Test%20Case%20%E2%80%93%20dll)/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-23%20170940.png)
+
+![Gambar Dekstop](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/4_Testing%20Documentation%20(Test%20Scenario%20%E2%80%93%20Test%20Case%20%E2%80%93%20dll)/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-23%20171120.png)
 
 3.  Penjelasan hasil dari pengujian non fungsional dengan menggunakan Lighthouse berbasis Dekstop
 
@@ -54,3 +59,29 @@ Menunjukkan bahwa performa sepulsa.com bisa lebih ditingkatkan. Lighthouse membe
 
 Menunjukkan bahwa sepulsa.com memenuhi standar aksesibilitas yang cukup tinggi. Skor 97 menunjukkan bahwa sepulsa.com memiliki sedikit masalah aksesibilitas dan dapat diakses oleh banyak orang dengan berbagai kebutuhan dan perangkat.
 
+-   Best Practices score: 92
+
+Menunjukkan bahwa ada beberapa area di sepulsa.com yang bisa ditingkatkan untuk memenuhi standar praktik terbaik dalam pengembangan web. Skor 92 menunjukkan bahwa ada beberapa area yang perlu ditingkatkan dalam hal struktur HTML, penggunaan HTTPS, penggunaan header HTTP, dan sebagainya.
+
+-   SEO score: 100
+
+Menunjukkan bahwa bahwa sepulsa.com memiliki konfigurasi SEO yang baik. Skor 100 menunjukkan bahwa sepulsa.com memiliki URL yang jelas dan mudah dimengerti oleh mesin pencari, metadata yang sesuai, struktur heading yang baik, dan sebagainya. Hal ini dapat membantu sepulsa.com ditemukan dengan mudah oleh mesin pencari dan meningkatkan peringkat SEO sepulsa.com.
+
+#### Pengujian non fungsional menggunakan Lighthouse berbasis Mobile pada sepulsa.com
+
+1. Langkah Langkah
+
+-   Buka situs https://www.sepulsa.com/ di browser Google Chrome.
+-   Klik kanan pada halaman web dan pilih "Inspect" dari menu yang muncul atau tekan Ctrl + Shift + I pada keyboard Anda.
+-   Setelah panel Inspect terbuka, klik tab "Lighthouse" di bagian atas.
+-   Pilih perangkat mobile yang ingin Anda gunakan untuk simulasi.
+-   Setelah Anda memilih perangkat mobile, halaman web akan secara otomatis di-refresh dan ditampilkan dalam mode simulasi perangkat mobile.
+-   Klik tombol "Analyze page load" untuk memulai pengujian.
+-   Tunggu beberapa saat hingga proses pengujian selesai.
+-   Setelah pengujian selesai, Lighthouse akan memberikan laporan hasil pengujian dalam beberapa kategori, seperti performa dan aksesibilitas
+
+2.  Screenshot
+
+![Gambar Mobile](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/4_Testing%20Documentation%20(Test%20Scenario%20%E2%80%93%20Test%20Case%20%E2%80%93%20dll)/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-23%20183356.png)
+
+![Gambar Mobile](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/4_Testing%20Documentation%20(Test%20Scenario%20%E2%80%93%20Test%20Case%20%E2%80%93%20dll)/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-23%20183452.png)
