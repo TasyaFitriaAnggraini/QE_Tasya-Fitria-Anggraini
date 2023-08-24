@@ -85,3 +85,21 @@ Menunjukkan bahwa bahwa sepulsa.com memiliki konfigurasi SEO yang baik. Skor 100
 ![Gambar Mobile](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/4_Testing%20Documentation%20(Test%20Scenario%20%E2%80%93%20Test%20Case%20%E2%80%93%20dll)/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-23%20183356.png)
 
 ![Gambar Mobile](https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/4_Testing%20Documentation%20(Test%20Scenario%20%E2%80%93%20Test%20Case%20%E2%80%93%20dll)/Screenshot/Soal%20Eksplorasi/Screenshot%202023-08-23%20183452.png)
+
+3.  Penjelasan hasil dari pengujian non fungsional dengan menggunakan Lighthouse berbasis Mobile
+
+-   Performance score: 50
+
+Menunjukkan bahwa performa sepulsa.com memiliki beberapa masalah. Skor ini menunjukkan bahwa sepulsa.com mungkin terasa lambat saat dimuat atau memerlukan waktu lebih lama untuk merespons input dari pengguna. Ada beberapa faktor yang dapat mempengaruhi skor ini, seperti ukuran file gambar yang besar, penggunaan script yang kompleks, atau server yang lambat dalam memberikan respon.
+
+-   Accessibility score: 97
+
+Menunjukkan bahwa sepulsa.com memiliki aksesibilitas yang sangat baik untuk pengguna dengan berbagai kebutuhan khusus. Skor ini menunjukkan bahwa sepulsa.com memiliki fitur aksesibilitas yang lengkap dan mudah diakses oleh pengguna dengan kebutuhan khusus, seperti penggunaan keyboard, tampilan berwarna kontras, atau dukungan untuk pembaca layar.
+
+-   Best Practices score: 92
+
+Menunjukkan bahwa sepulsa.com mengindikasikan bahwa situs sepulsa.com telah mematuhi banyak praktik terbaik dalam pengembangan web. Skor ini menunjukkan bahwa sepulsa.com sepenuhnya mengikuti standar terbaik dalam hal penggunaan teknologi web, struktur kode yang jelas, atau penggunaan alat bantu dalam pengembangan web.
+
+-   SEO score: 100
+
+Menunjukkan bahwa sepulsa.com memiliki kinerja yang sangat baik dalam hal optimasi mesin pencari. Skor ini menunjukkan bahwa sepulsa.com mudah ditemukan dan diindeks oleh mesin pencari seperti Google, Yahoo, dan Bing. Ini dapat membantu meningkatkan jumlah kunjungan ke sepulsa.com dan membantu meningkatkan keuntungan bagi bisnis yang berkaitan.
