@@ -14,7 +14,7 @@ Buatlah test case untuk aplikasi https://www.sepulsa.com/ untuk fitur register, 
 
 Jawab:
 
-
+https://docs.google.com/spreadsheets/d/1putu8bhvsvtytgZPOVL7m7mWtZ5ViFBXQwiqLSx1qoE/edit?usp=sharing 
 
 ### Soal Eksplorasi
 1. Lakukan pengujian non fungsional untuk aplikasi https://www.sepulsa.com/ dengan menggunakan Lighthouse. Referensi mengenai Lighthouse dapat dicek di link [berikut](https://developer.chrome.com/docs/lighthouse/overview/). Kriteria untuk pengujian non fungsional adalah sebagai berikut:
