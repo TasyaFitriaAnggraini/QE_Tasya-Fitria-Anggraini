@@ -14,39 +14,27 @@ Proses yang digunakan industi software untuk mendesain, mendevelop, dan menguji 
 
 1.  Requirements Gathering
 
-<aside?>
 Pada tahap ini, sistem akan dianalisis sebagaimana akan dijalankan. Hasil analisis berupa kelebihan dan kekurangan sistem, fungsi sistem hingga pembaharuan yang yang dapat diterapkan. Bagian ini termasuk dalam bagian perencanaan, bagian lain antara lain alokasi sumber daya, perencanaan kapasitas, estimasi biaya dan penetapan. Hasil dari tahap ini ialah rencana proyek, jadwal estimasi biaya, dan ketentuan.
-</aside>
 
 2.  Design
 
-<aside>
 Tahap dimana membuat model cara kerja aplikasi atau software, ada beberapa aspek yang diperhatikan dalam tahap ini antara lain komunikasi, programming, arsitektur, user interface, platform dan security. 
-</aside>
 
 3.  Development (Code)
 
-<aside>
 Pada tahap ini, dimana program code ditulis. Proses coding tidak hanya dilakukan sebatas menyusun code agar aplikasi tetepa berjalan tetapi mencakup banyak tugas lainnya misalnya menemukan dan memperbaiki eror atau glits yang ditemukan serta menuliskan dokuemntasi seperti panduan penggunaan untuk masalah teknis 
-</aside>
 
 4.  Testing
 
-<aside>
 Sesudah sistem dikembangkan, sistem harus melalui pengujian sebelum di publish. Pada tahap ini ada beberapa hal yang harus diperhatikan seperti kemudahan sistem pencapaian tujuan dari sistem yang sudah disusun sejak perancangan sistem dilakukan. Tahap ini sangat penting dalam pembuatan sistem ataupun software.
-</aside>
 
 5.  Deployment
 
-<aside>
 Pada tahap ini aplikasi sudah tersedia pada user untuk digunakan. Pada tahap ini bisa jadi hal terumit karena harus mengganti database yang baru serta pembaharuan dari komentar user dan ingin diperbaiki sesuai keinginan user.
-</aside>
 
 6.  Maintenance
 
-<aside>
 Pada tahap ini, aplikasi sudah bisa dapat digunakan secara baik dan benar oleh user namun tahapan ini masih dianggap penting sebab pengguna bisa menemukan bug yang tidak ditemukan selama pengujian sehingga kesalahan harus diatasi.
-</aside>
 
 ## Agile Testing Manifesto
 
