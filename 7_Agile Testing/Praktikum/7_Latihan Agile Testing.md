@@ -11,15 +11,15 @@ Quality Engineer berperan penting dalam setiap fase pada proses SDLC (Software D
 
 -   Requirement Gathering
 
-    QE membantu dalam perencanaan proyek dengan memahami kebutuhan pengguna dan membuat rencana pengujian yang tepat untuk memastikan bahwa produk final memenuhi kebutuhan pengguna.
+    QE mengumpulkan knowledge seperti bahasa pemrogramannya, dokumen APInya dan membantu dalam perencanaan proyek dengan memahami kebutuhan pengguna dan membuat rencana pengujian yang tepat untuk memastikan bahwa produk final memenuhi kebutuhan pengguna.
 
 -   Design
 
-    QE terlibat dalam proses desain untuk memastikan bahwa arsitektur perangkat lunak yang dibangun adalah skalabel, efisien dan dapat diuji dengan baik. QE juga memastikan bahwa proses pengujian terintegrasi dengan proses pengembangan dan menawarkan solusi pengujian otomatisasi.
+    QE pada tahap ini membuat test case karena pada tahap ini sudah dapat dilihat seperti pada login dan terlibat dalam proses desain untuk memastikan bahwa arsitektur perangkat lunak yang dibangun adalah skalabel, efisien dan dapat diuji dengan baik. QE juga memastikan bahwa proses pengujian terintegrasi dengan proses pengembangan dan menawarkan solusi pengujian otomatisasi.
 
 -   Development (Code)
 
-    QE bertanggung jawab untuk memastikan bahwa kode berkualitas dan memenuhi standar kualitas yang telah ditetapkan sebelum diluncurkan ke tahap selanjutnya. 
+    QE pada tahap ini, merevisi menambah atau berkurang test case karena pada development terjadinya perubahan juga dan bertanggung jawab untuk memastikan bahwa kode berkualitas dan memenuhi standar kualitas yang telah ditetapkan sebelum diluncurkan ke tahap selanjutnya. 
 
 -   Testing
 
