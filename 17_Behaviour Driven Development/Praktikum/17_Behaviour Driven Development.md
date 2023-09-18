@@ -234,3 +234,57 @@ As a user of Sepulsa website, I want to be able to verify the functionality of i
 -	Then I am should see a confirmation message indicating that the payment was successful
 
 #### SCREENSHOOT
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013349.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013605.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013615.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013624.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013631.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013700.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013715.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013755.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013803.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013812.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013823.png" alt="Deskripsi Gambar">
+
+<img src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/17_Behaviour%20Driven%20Development/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-19%20013842.png" alt="Deskripsi Gambar">
+
+### Soal Eksplorasi 3
+
+Lakukan testing pada aplikasi [https://www.sepulsa.com/ dengan langkah-langkah sebagai berikut:
+   - Menggunakan cypress sebagai tools untuk melakukan testing. Referensi penggunaan BDD dengan cypress dapat dilihat https://www.toolsqa.com/cypress/bdd-automation-framework-in-cypress/
+   - Buatlah scenario test menggunakan format BDD pada fitur login, pilih produk dan pilih metode pembayaran
+   - Tampilkan hasil testing dengan menggunakan cypress
+
+Jawab: 
+
+#### Feature: Testing Sepulsa Features
+As a user of Sepulsa website, 
+I want to be able to verify the functionality of its key features, such as the login process, product selection, and payment methods. This will help me ensure that the website is working correctly and that I can use it to complete transactions with ease. Through testing these features, I can identify and report any bugs or issues that may arise and contribute to improving the overall user experience on Sepulsa website.
+
+#### Scenario: Verify User Valid Login
+- Given I am is on the Sepulsa login page
+- And I am has entered valid login credentials username and password
+- When I am click the Login button
+- Then I am should be redirected to the Sepulsa homepage and see their account information
+
+#### Scenario: Verify User Choose Product
+- Given I am is logged in to the Sepulsa application
+- When I am clicks on the Choose Product button
+- Then I am should be redirected to the Sepulsa products page
+
+#### Scenario: Verify User Choose Payment Method
+- Given I am has selected a product
+- And I am is on the Sepulsa payment page
+- And I am clicks the Pay Now button
+- Then I am should see the payment details and be able to proceed with the payment
