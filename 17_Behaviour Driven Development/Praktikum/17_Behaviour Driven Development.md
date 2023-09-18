@@ -2,7 +2,6 @@
 
 ## Soal Behavior Driven Development (BDD)
 
-https://docs.google.com/document/d/188LYaKy-yyBA9VNg1kt8nbhRZ9ubxT3x/edit?usp=share_link&ouid=117667124886656144596&rtpof=true&sd=true
 
 ### Soal Prioritas 1
 
