@@ -1,7 +1,5 @@
 # 9 - From Manual to Automation Testing & BDD
 
-## Soal Behavior Driven Development (BDD)
-
 
 ### Soal Prioritas 1
 
