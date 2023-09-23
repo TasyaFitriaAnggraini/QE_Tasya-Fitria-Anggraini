@@ -11,6 +11,8 @@ Kriteria dari pembuatan test case adalah sebagai berikut:
 
 Jawab:
 
+https://docs.google.com/document/d/1B1gK7GUlb2ALRUJ8fjMqkaGisntGCBBz/edit?usp=sharing&ouid=116269043888314414582&rtpof=true&sd=true
+
 ### Feature: API Testing on
 
 As a tester
