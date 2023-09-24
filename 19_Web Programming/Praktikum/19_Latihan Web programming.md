@@ -18,7 +18,7 @@ Jawab :
 
 Buatlah sebuah halaman web dengan tampilan seperti berikut:
 
-<img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Soal%20Prioritas%201/Screenshot%202023-09-24%20114828.png">
+<img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Screenshot%202023-09-24%20120030.png">
 
 Jawab :
 
@@ -30,7 +30,7 @@ Jawab :
 
 Buatlah sebuah halaman website dengan tampilan seperti berikut:
 
-<img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Soal%20Prioritas%202/Screenshot%202023-09-24%20115021.png">
+<img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Screenshot%202023-09-24%20120455.png">
 
 Jawab :
 
