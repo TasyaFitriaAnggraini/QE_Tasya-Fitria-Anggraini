@@ -38,4 +38,4 @@ Jawab :
 
 <img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Soal%20Eksplorasi/Screenshot%202023-09-24%20115310.png">
 
-<img width="436" alt="Jepretan Layar" src="<img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Soal%20Eksplorasi/Screenshot%202023-09-24%20115310.png">">
+<img width="436" alt="Jepretan Layar" src="https://github.com/TasyaFitriaAnggraini/QE_Tasya-Fitria-Anggraini/blob/main/19_Web%20Programming/Screenshot/Soal%20Eksplorasi/Screenshot%202023-09-24%20115310.png">">
