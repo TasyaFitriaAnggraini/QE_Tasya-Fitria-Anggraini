@@ -1,4 +1,4 @@
-# 12 - Fundamental Performance Test & Performance Testing with JMeter
+# Introduction JMeter and Tutorial Record with JMeter
 
 https://docs.google.com/document/d/1HlNnCAobmi1N7zE01Y3iV-jk6NOisM-A_Q0oQX58rLs/edit?usp=sharing
 
