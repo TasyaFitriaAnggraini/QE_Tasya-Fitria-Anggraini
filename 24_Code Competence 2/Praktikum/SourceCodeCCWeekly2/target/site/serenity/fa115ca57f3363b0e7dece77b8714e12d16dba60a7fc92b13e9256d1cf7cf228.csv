@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Login","[Positive] - LOGIN_As admin I have be able to login","SUCCESS","2023-10-06T14:52:50.2399978+07:00[Asia/Bangkok]","0.0","1.23"
+"Login","[Negative] - LOGIN_As admin I can't login with missing data","SUCCESS","2023-10-06T14:52:51.4754087+07:00[Asia/Bangkok]","0.0","0.46"

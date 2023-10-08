@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity Reports</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="bootstrap-icons/bootstrap-icons.css">
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.13.1/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.13.1/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.13.1/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/>
+<!--CHART.JS-->
+<script src="chartjs/chart.js"></script>
+<script src="chartjs/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="chartjs/patternomaly.min.js"></script>
+<script>
+    // Register the plugin to all charts:
+    Chart.register(ChartDataLabels);
+</script>
+<!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.13.1/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.13.1/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.13.1/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+
+
+            $("#scenario-results").DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "language": {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+                columnDefs: [
+                    {type: 'time-elapsed-dhms', targets: 4}
+                ]
+            })
+            $("#manual-scenario-results").DataTable({
+                "order": [[0, "asc",], [1, "asc",]],
+                "language": {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+            })
+
+        // Results table
+        $('#test-results-table').DataTable({
+            "order": [[0, "asc",], [3, "asc",]],
+            "pageLength": 100,
+            "lengthMenu": [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]]
+        });
+
+    })
+    ;
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Serenity BDD Report</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs"><a href="index.html">Home</a>
+                > Feature 
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="bi bi-journal-check"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 06-10-2023 14:53:16</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="middlb">
+            <div class="table">
+
+                <h2>Test Results: All Tests</h2>
+                <table class='overview'>
+                    <tr>
+                        <td width="375px" valign="top">
+                            <div class="test-count-summary">
+                                <div>
+
+                                    18 tests
+
+                                     |
+                                        <a href="99e09e0e02ff07e40c4e09ea0f251eef1924ce26e7aa822141a252c536d94781.csv" title="Download CSV"> <i class="bi bi-cloud-arrow-down" title="Download CSV"></i></a>
+
+                                    <p class="report-info"><i class="bi bi-info-circle"></i> Note that results include
+                                        data-driven scenarios containing tests ,
+                                        which may also contain results other than tests .</p>
+
+
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#summary"><i class="bi bi-house-door"></i> Summary</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#tests"><i class="bi bi-speedometer"></i> Test
+                                            Results</a>
+                                    </li>
+                                </ul>
+
+                                <div class="card border">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div id="summary" class="tab-pane fade in active">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+    <div>
+        <h3><i class="bi bi-speedometer2"></i> Key Statistics</h3>
+        <div>
+            <table class="table table-striped table-hover">
+                <tbody>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-card-checklist"></i> Number of Scenarios
+                    </td>
+                    <td>18</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-caret-right"></i> Total Number of Test Cases
+                    </td>
+                    <td>18</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-flag-fill"></i> Tests Started
+                    </td>
+                    <td>Oct 06, 2023 14:52:51</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stop-circle"></i> Tests
+                        Finished
+                    </td>
+                    <td>Oct 06, 2023 14:53:02</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Total
+                        Duration
+                    </td>
+                    <td>10s</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-trophy"></i> Fastest Test
+                    </td>
+                    <td>437ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-skip-start"></i> Slowest
+                        Test
+                    </td>
+                    <td>1s</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Average
+                        Execution Time
+                    </td>
+                    <td>567ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stopwatch-fill"></i> Total
+                        Execution Time
+                    </td>
+                    <td>10s</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h4><i class="bi bi-check-square"></i> Test Outcomes</h4>
+                                                        <!-- Severity bar chart -->
+                                                        <div class="chart-container" style="position: relative; width:30vw">
+                                                            <canvas id="severityChart" width="300" height="300"></canvas>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                        <h4><i class="bi bi-graph-up"></i> Test Performance</h4>
+
+                                                        <!-- Duration bar chart -->
+                                                        <div class="chart-container" style="position: relative; width:30vw">
+                                                            <canvas id="durationChart" width="300" height="300"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h3>Tags</h3>
+
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                            <h5 class="card-title">Feature</h5>
+                                                                        <div>
+                                                                                <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">
+                                                                                    <span class="badge" style="background-color:#b0cf73; margin:1em;padding:4px;">
+                                                                                        <i class="bi bi-tag"></i> Resources/Product&nbsp;&nbsp;&nbsp;18
+                                                                                    </span>
+                                                                                </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="container-fluid">
+
+                                            </div>
+                                            <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Tags</h3>
+                    <div class="card">
+                        <div class="card-body">
+                                <h5 class="card-title">Feature</h5>
+                            <div>
+                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">
+                                    <span class="tag-badge badge" style="background-color:#b0cf73; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Resources/Product&nbsp;&nbsp;&nbsp;18
+                                    </span>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+                                            </div>
+                                        </div>
+                                        <div id="tests" class="tab-pane fade in">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="bi bi-gear"></i> Automated Tests</h3>
+
+                                            <table class="scenario-result-table table" id="scenario-results">
+                                                <thead>
+                                                <tr>
+                                                    <th>Feature</th>
+                                                    <th class="test-name-column">Scenario</th>
+                                                    <th>Steps</th>
+                                                    <th>Started</th>
+                                                    <th>Total Duration</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="23a92d1c31bfc8f0df0f41af463e81ecdff337aeff8c156b0f98fd0e4c7bc9c1.html">[Positive] - PRODUCT_GET all detail data product</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:51</td>
+                                                            <td>463ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="945a7e786e0a05b2365b2f5083310897a448e02870a9c00263348b84d03526ec.html">[Negative] - PRODUCT_GET all detail data product with invalid url</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:52</td>
+                                                            <td>450ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="dbf053f00426355d6336e27dc4bc29f92534a8640cc8fbb4e8c10f3fcc0db695.html">[Positive] - PRODUCT_GET a single product with valid endpoint</a></td>
+                                                            <td>4</td>
+                                                            <td>14:52:52</td>
+                                                            <td>441ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="3570c011fe279bea231c9c0d073b6b91363d9cb3be2075660eddbc3a49a7c188.html">[Negative] - PRODUCT_GET a single product with invalid endpoint</a></td>
+                                                            <td>4</td>
+                                                            <td>14:52:53</td>
+                                                            <td>445ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="e858b9a47c3bb86eff039cdc433e97286e72f4d88b1c25d644f5c954f266ff61.html">[Positive] - PRODUCT_GET limit result product with valid param</a></td>
+                                                            <td>4</td>
+                                                            <td>14:52:53</td>
+                                                            <td>445ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="b2787416e1e04721cafd02e5f52d1d5358f2efca5a9b9763cfc9b9496f4c90a4.html">[Negative] - PRODUCT_GET limit result product with invalid param</a></td>
+                                                            <td>4</td>
+                                                            <td>14:52:54</td>
+                                                            <td>437ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="bc50a02aa8fe8d199157fc9ba5a413f6ec755b37b3298b6ea87ab8c247015e3a.html">[Positive] - PRODUCT_GET sort result product in descending with valid endpoint</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:54</td>
+                                                            <td>480ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="580e45c5ef99994866c7b82af5799234baac192c248172ee789131b33af9766d.html">[Negative] - PRODUCT_GET sort result product in descending with invalid endpoint</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:55</td>
+                                                            <td>787ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="cf10f155f94353f082cc5fee25c1eb276f80894d24f8eb9ee3e8e4725cb1d7cc.html">[Positive] - PRODUCT_GET all categories product with valid endpoints</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:55</td>
+                                                            <td>443ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="96499e814c05915c919ebd6aed71d6316ff6ec9e0c5691bbd0259e1eb90d79b8.html">[Negative] - PRODUCT_GET all categories product with invalid endpoint</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:56</td>
+                                                            <td>757ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="98d50440a611d3008d2808a786a45accf4618cd291f5742e67c473a08a8f8e63.html">[Positive] - PRODUCT_GET in category product with valid endpoint</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:57</td>
+                                                            <td>627ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="52faea3e227b4654355fcc79c1497818ffb53cc9be544338bc19f77b80488274.html">[Negative] - PRODUCT_GET in category product with invalid endpoint</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:57</td>
+                                                            <td>1s 102ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="0a081389f503b2361004b6ad635390c734a647660f8825a2800545f933fb6f8f.html">[Positive] - PRODUCT_POST new product with valid data</a></td>
+                                                            <td>4</td>
+                                                            <td>14:52:58</td>
+                                                            <td>524ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="2d0e16d84d81ba91ed15622380ced07096761adedfb5ca42f5f89db9e8ed0668.html">[Negative] - PRODUCT_POST new product with invalid data</a></td>
+                                                            <td>3</td>
+                                                            <td>14:52:59</td>
+                                                            <td>754ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="a405710f967ff0d6952dc1be45d46b3ee317d50a0109a177a7412a6b6cc67117.html">[Positive] - PRODUCT_PUT existing product with valid endpoints</a></td>
+                                                            <td>4</td>
+                                                            <td>14:53:00</td>
+                                                            <td>452ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="886b18f117060fc99222e3a140409ed8c4d17d993d15fbb81a5c72de82f9ecee.html">[Negative] - PRODUCT_PUT existing product with invalid endpoints</a></td>
+                                                            <td>4</td>
+                                                            <td>14:53:00</td>
+                                                            <td>541ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="360b9788bf937988051d1848ac880e6779c4175201108cd99cf4db5cd0c7ec0f.html">[Positive] - PRODUCT_DELETE existing product with valid id</a></td>
+                                                            <td>3</td>
+                                                            <td>14:53:01</td>
+                                                            <td>613ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="scenario-result SUCCESS">
+                                                            <td>
+                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                            </td>
+                                                            <td><a href="6853195d61edaea3ff86cbc453414a835c79439d02bae7ef7572f28a7a07b6c8.html">[Negative] - PRODUCT_DELETE existing cart with invalid id</a></td>
+                                                            <td>3</td>
+                                                            <td>14:53:01</td>
+                                                            <td>452ms</td>
+                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                            </td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="bi bi-hand-index-thumb"></i> Manual Tests</h3>
+
+                                                No manual tests were recorded
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="beforefooter"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 3.6.12</span>
+        </div>
+    </div>
+</div>
+
+<!-- Chart data -->
+    <!-- PIE CHART -->
+    <script>
+
+        // The results pie chart
+        const outcomeChartCtx = document.getElementById('resultChart');
+
+        // Options define for display value on top of bars
+        const outcomeDetailsReports = [
+            { title: 'Passing Test Cases', link: "2755bfa71b9a107f3f546c3439ce94e64fed6d78dc510ee84e14985ef7af58b3.html" },
+            { title: 'Pending Test Cases', link: "cc0f69dafa4a8c7e5e532f22ed8bbcaa3f2e383def0be81d9672d272d31d8707.html" },
+            { title: 'Ignored Test Cases', link: "b5536d0a6ca0d68f49257e612b757d23173b99b102df91e97965ea2793623497.html" },
+            { title: 'Skipped Test Cases', link: "b2919e5c76778b405943408dddd83600fdb5d3ed9cb3d94e136856454a6b695b.html" },
+            { title: 'Aborted Test Cases',  link: "a53df141205f8bc4ad913b1a3f8f305154b65c63cabd434d0a12a6b83dcee724.html"},
+            { title: 'Failed Test Cases', link: "cb25806a2db4a06b509dfe6576b5aac84d77e8f3132baf422109f2f58e7c1136.html"  },
+            { title: 'Broken Test Cases', link: "381d31ee3495a48cbe472fd868bf194441694395b6e208e69da747fe234b7a0f.html"    },
+            { title: 'Compromised Test Cases',  link: "39efe9e30942a5f9153f4d84549b29866f24712a6bb617b748d987942b1e429b.html" },
+        ]
+        const outcomeData = {
+            labels: ['Passing Test Cases', 'Pending Test Cases', 'Ignored Test Cases', 'Skipped Test Cases', 'Aborted Test Cases', 'Failed Test Cases', 'Broken Test Cases', 'Compromised Test Cases','Undefined Test Cases'],
+            datasets: [{
+                label: 'Test Results',
+                fill: false,
+                data: [{meta: 'Passing tests', value: 18}, {meta: 'Pending tests', value: 0}, {meta: 'Ignored tests', value: 0}, {meta: 'Skipped tests', value: 0}, {meta: 'Aborted tests', value: 0}, {meta: 'Failing tests', value: 0}, {meta: 'Broken tests', value: 0}, {meta: 'Compromised tests', value: 0}],
+                backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
+                borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
+                borderWidth: 1,
+            }]
+        }
+        const outcomeOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                },
+                // Change options for ALL labels of THIS CHART
+                datalabels: {
+                    color: '#444444',
+                    'font.weight': 'bold',
+                    formatter: (value, ctx) => {
+                        let sum = 0;
+                        let dataArr = ctx.chart.data.datasets[0].data;
+                        dataArr.map(data => {
+                            sum += data;
+                        });
+                        let percentage = (value * 100 / sum).toFixed(0) + "%";
+                        if (percentage === '0%' || percentage === 'NaN%') {
+                            return '';
+                        } else {
+                            return percentage;
+                        }
+                    },
+                },
+            }
+        }
+
+        const outcomeChart = new Chart(outcomeChartCtx, {
+            type: 'doughnut',
+            data: outcomeData,
+            options: outcomeOptions,
+            plugins: [
+                {
+                    id: 'text',
+                    beforeDraw: function (chart, a, b) {
+                        var width = chart.width,
+                            height = chart.height,
+                            ctx = chart.ctx;
+
+                        ctx.restore();
+                        var fontSize = (height / 200).toFixed(1);
+                        ctx.font = fontSize + "em sans-serif";
+                        ctx.textBaseline = "middle";
+
+                        var text = "100%"
+                        textX = 10 + Math.round((width - ctx.measureText(text).width) / 2);
+                        textY = (height / 2) - 40;
+
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
+        });
+
+        function clickHandler(click) {
+            const points = outcomeChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+            if (points.length) {
+                const firstPoint = points[0];
+                window.open(outcomeDetailsReports[firstPoint.index].link, "_self")
+
+            }
+        }
+        outcomeChartCtx.onclick = clickHandler;
+    </script>
+    <!-- END PIE CHART -->
+
+    <!-- SUMMARY BAR CHART -->
+    <script>
+
+        // The Severity bar chart
+        const severityChartCtx = document.getElementById('severityChart');
+
+        // Options define for display value on top of bars
+
+        const severityDetailsReports = [
+            { title: 'Passing Scenarios', link: "2755bfa71b9a107f3f546c3439ce94e64fed6d78dc510ee84e14985ef7af58b3.html" },
+            { title: 'Pending Scenarios', link: "cc0f69dafa4a8c7e5e532f22ed8bbcaa3f2e383def0be81d9672d272d31d8707.html" },
+            { title: 'Ignored Scenarios', link: "b5536d0a6ca0d68f49257e612b757d23173b99b102df91e97965ea2793623497.html" },
+            { title: 'Skipped Scenarios', link: "b2919e5c76778b405943408dddd83600fdb5d3ed9cb3d94e136856454a6b695b.html" },
+            { title: 'Aborted Scenarios',  link: "a53df141205f8bc4ad913b1a3f8f305154b65c63cabd434d0a12a6b83dcee724.html"},
+            { title: 'Failed Scenarios', link: "cb25806a2db4a06b509dfe6576b5aac84d77e8f3132baf422109f2f58e7c1136.html"  },
+            { title: 'Broken Scenarios', link: "381d31ee3495a48cbe472fd868bf194441694395b6e208e69da747fe234b7a0f.html"    },
+            { title: 'Compromised Scenarios',  link: "39efe9e30942a5f9153f4d84549b29866f24712a6bb617b748d987942b1e429b.html" },
+        ]
+        const severityData = {
+            labels: ['Passing', 'Pending', 'Ignored', 'Skipped', 'Aborted', 'Failed', 'Broken', 'Compromised'],
+            datasets: [
+                {
+                    label: 'Automated',
+                    data: [18,0,0,0,0,0,0,0],
+                    backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
+                    borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Manual',
+                    data: [0,0,0,0,0,0,0,0],
+                    backgroundColor: ['rgba(153,204,51,0.25)','rgba(165, 199, 238, 0.25)','rgba(168, 168, 168, 0.25)','rgba(238, 224, 152, 0.375)','rgba(255, 153, 102, 0.25)','rgba(255, 22, 49, 0.25)','rgba(255, 97, 8, 0.25)','rgba(255, 104, 255, 0.25)','rgba(83, 50, 168, 0.25)'],
+                    borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
+                    borderWidth: 1
+                },
+
+            ]
+        }
+        const severityOptions = {
+            responsive: true,
+            skipNull: true,
+            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true,
+                }
+            },
+            plugins: {
+                // Change options for ALL labels of THIS CHART
+                datalabels: {
+                    color: '#444444',
+                    'font.weight': 'bold',
+                    formatter: (value, ctx) => {
+                        if (value === 0) {
+                            return '';
+                        } else {
+                            return value;
+                        }
+                    },
+                }
+            }
+        }
+        const severityChart = new Chart(severityChartCtx, {
+            type: 'bar',
+            data: severityData,
+            options: severityOptions
+        });
+
+        function clickHandler(click) {
+            const points = severityChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+            if (points.length) {
+                const firstPoint = points[0];
+                window.open(severityDetailsReports[firstPoint.index].link, "_self")
+
+            }
+        }
+        severityChartCtx.onclick = clickHandler;
+    </script>
+    <!-- END SUMMARY CHART -->
+
+    <!-- DURATION CHART -->
+    <script>
+
+        // Options define for display value on top of bars
+        const durationDetailsReports = [
+                {title: "Under 1 second", link: "c7a0fc68adcb3428b4e3e7a8d81deaf760b8be0662acb41d460dcfcccc2b99fc.html"},
+                {title: "1 to 10 seconds", link: "d00fb4426cdc3e52248ed4ae83548340b7e71dc9c089e19bcb95e83c2e7dc722.html"},
+                {title: "10 to 30 seconds", link: "a4be155260e5b2340012e74b119ab0b635c7e7b3bd219430c7f522b1d77b86dd.html"},
+                {title: "30 to 60 seconds", link: "edc56fd5d9ee9f2ee1eb36d6d45d2456f62592ef2e69fa7742e20b2236cf858c.html"},
+                {title: "1 to 2 minutes", link: "418e3957fd42ec81a77cc476ea14685794fb75c8ea1d333ebc657399f305d9e1.html"},
+                {title: "2 to 5 minutes", link: "e2a57502d988883d34fae9fcd34b9c4f5ed69b6107248f6eea41bf1fef44b4e1.html"},
+                {title: "5 to 10 minutes", link: "b7fa79a485e4af358a11b1730b70a9dcb8124944ac12c521e6e5b0d5f7c93f88.html"},
+                {title: "10 minutes or over", link: "29f935798636913a365be560b0ea8aa50e692208b58e14fc5d62df1193b03163.html"},
+        ]
+        // The Severity bar chart
+        const durationChartCtx = document.getElementById('durationChart');
+
+        // Options define for display value on top of bars
+
+        const durationData = {
+            labels: ['Under 1 second','1 to 10 seconds','10 to 30 seconds','30 to 60 seconds','1 to 2 minutes','2 to 5 minutes','5 to 10 minutes','10 minutes or over'],
+            datasets: [{
+                label: 'Number of tests per duration',
+                fill: false,
+                data: ['17','1','0','0','0','0','0','0'],
+                backgroundColor: 'rgba(83, 146, 255,0.5)',
+                borderColor: 'rgba(83, 146, 255, 1)',
+            }]
+        }
+        const durationOptions = {
+            responsive: true,
+            plugins: {
+                // Change options for ALL labels of THIS CHART
+                datalabels: {
+                    color: '#444444',
+                    'font.weight': 'bold',
+                    formatter: (value, ctx) => {
+                        if (value > 0) {
+                            return value;
+                        } else {
+                            return '';
+                        }
+                    },
+                },
+                tooltip: {
+                    enabled: true,
+                    usePointStyle: true,
+                    callbacks: {
+                        label: (data) => {
+                            return data.parsed.y + ' tests'
+                        }
+                    },
+                },
+            },
+        }
+
+        const durationChart = new Chart(durationChartCtx, {
+            type: 'bar',
+            data: durationData,
+            options: durationOptions
+        });
+
+        function durationClickHandler(click) {
+            const points = durationChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+            if (points.length) {
+                const firstPoint = points[0];
+                window.open(durationDetailsReports[firstPoint.index].link, "_self")
+
+            }
+        }
+
+        durationChartCtx.onclick = durationClickHandler;
+    </script>
+    <!-- END DURATION CHART -->
+
+
+</body>
+</html>

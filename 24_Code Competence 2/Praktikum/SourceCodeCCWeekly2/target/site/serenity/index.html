@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity Reports</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="bootstrap-icons/bootstrap-icons.css">
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.13.1/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.13.1/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.13.1/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/>
+<!--CHART.JS-->
+<script src="chartjs/chart.js"></script>
+<script src="chartjs/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="chartjs/patternomaly.min.js"></script>
+<script>
+    // Register the plugin to all charts:
+    Chart.register(ChartDataLabels);
+</script>
+<!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.13.1/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.13.1/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.13.1/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+
+
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+
+            $("#scenario-results").DataTable({
+                "order": [[0, "asc",], [1, "asc",], [2, "asc",]],
+                "language": {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+                columnDefs: [
+                    {type: 'time-elapsed-dhms', targets: 4}
+                ]
+            })
+            $("#manual-scenario-results").DataTable({
+                "order": [[0, "asc",], [1, "asc",]],
+                "language": {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+            })
+
+            // Results table
+            $('#test-results-table').DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]]
+            });
+
+            $('#evidence-table').DataTable({
+                searching: false,
+                paging: false,
+                info: false
+            });
+
+            $(".feature-coverage-table").DataTable({
+                searching: true,
+                paging: false,
+                info: false
+            });
+
+            $(".feature-coverage-table-with-pagination").DataTable({
+                searching: true,
+                order: [[0, "asc",]],
+                pageLength: 10,
+                language: {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Serenity BDD Report</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs"><a href="index.html">Home</a>
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="bi bi-journal-check"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 06-10-2023 14:53:16</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="middlb">
+            <div class="table">
+
+                <h2>Test Results: All Tests</h2>
+                <table class='overview'>
+                    <tr>
+                        <td width="375px" valign="top">
+                            <div class="test-count-summary">
+                                <div class="test-count-title">
+                                    51 tests
+
+                                    
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#summary"><i class="bi bi-house-door"></i>
+                                            Summary</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#tests"><i class="bi bi-speedometer"></i> Test
+                                            Results</a>
+                                    </li>
+                                </ul>
+
+
+                                <div class="card border">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div id="summary" class="tab-pane fade in active">
+                                            <div class="container-fluid">
+                                                <div class="dashboard-charts row">
+                                                    <div class="col-lg-4 col-md-6 col-sm-9">
+                                                        <!-- PIE CHART -->
+                                                        <h4><i class="bi bi-pie-chart"></i> Overview</h4>
+                                                            <div class="chart-container">
+                                                                <canvas id="resultChart" height="200px"></canvas>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-9">
+                                                        <h4><i class="bi bi-check-square"></i> Test Outcomes</h4>
+                                                        <!-- Severity bar chart -->
+                                                        <div class="chart-container">
+                                                            <canvas id="severityChart" height="200px"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-9">
+                                                        <h4><i class="bi bi-graph-up"></i> Test Performance</h4>
+
+                                                        <!-- Duration bar chart -->
+                                                        <div class="chart-container">
+                                                            <canvas id="durationChart" height="200px"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-6">
+    <div>
+        <h3><i class="bi bi-speedometer2"></i> Key Statistics</h3>
+        <div>
+            <table class="table table-striped table-hover">
+                <tbody>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-card-checklist"></i> Number of Scenarios
+                    </td>
+                    <td>51</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-caret-right"></i> Total Number of Test Cases
+                    </td>
+                    <td>51</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-flag-fill"></i> Tests Started
+                    </td>
+                    <td>Oct 06, 2023 14:52:36</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stop-circle"></i> Tests
+                        Finished
+                    </td>
+                    <td>Oct 06, 2023 14:53:11</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Total
+                        Duration
+                    </td>
+                    <td>34s</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-trophy"></i> Fastest Test
+                    </td>
+                    <td>436ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-skip-start"></i> Slowest
+                        Test
+                    </td>
+                    <td>3s</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Average
+                        Execution Time
+                    </td>
+                    <td>672ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stopwatch-fill"></i> Total
+                        Execution Time
+                    </td>
+                    <td>34s</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <h3>Test Failure Overview</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <h4>Most Frequent Failures</h4>
+                                                            <table class="table" style="width:40vw;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="failure-color top-list-title">
+                                                                            <a href="a0ace456df350117335ad374e8d62c0d8c978db868ea1469e0c5ba32aac965ea.html"><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon ' title='FAILURE'></i></a> Assertion error</a>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="badge failure-badge">1</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <h4>Most Unstable Features</h4>
+                                                            <table class="table" style="width:40vw;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="failure-color top-list-title">
+                                                                            <a href="#">Cart</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="badge failure-badge">5%</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Tags</h3>
+                    <div class="card">
+                        <div class="card-body">
+                                <h5 class="card-title">Feature</h5>
+                            <div>
+                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">
+                                    <span class="tag-badge badge" style="background-color:#b0cf73; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Resources/Product&nbsp;&nbsp;&nbsp;18
+                                    </span>
+                                    </a>
+                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">
+                                    <span class="tag-badge badge" style="background-color:#b0cf73; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Resources/User&nbsp;&nbsp;&nbsp;14
+                                    </span>
+                                    </a>
+                                    <a href="c9a424a200f6e743596d0b5f216d1e55539e147d8a1cd3afdebb62ee4542d2f4.html">
+                                    <span class="tag-badge badge" style="background-color:#b0cf73; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Resources/Login&nbsp;&nbsp;&nbsp;2
+                                    </span>
+                                    </a>
+                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">
+                                    <span class="tag-badge badge" style="background-color:#fd938e; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Resources/Cart&nbsp;&nbsp;&nbsp;17
+                                    </span>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+                                            </div>
+                                        </div>
+                                        <div id="tests" class="tab-pane fade">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+    <div>
+        <h3><i class="bi bi-speedometer2"></i> Key Statistics</h3>
+        <div>
+            <table class="table table-striped table-hover">
+                <tbody>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-card-checklist"></i> Number of Scenarios
+                    </td>
+                    <td>51</td>
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Total
+                        Duration
+                    </td>
+                    <td>34s</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-caret-right"></i> Total Number of Test Cases
+                    </td>
+                    <td>51</td>
+                    <td>
+                        <i class="bi bi-trophy"></i> Fastest Test
+                    </td>
+                    <td>436ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-person"></i> Number of Manual Test Cases
+                    </td>
+                    <td>0</td>
+                    <td>
+                        <i class="bi bi-skip-start"></i> Slowest
+                        Test
+                    </td>
+                    <td>3s</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-flag-fill"></i> Tests Started
+                    </td>
+                    <td>Oct 06, 2023 14:52:36</td>
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Average
+                        Execution Time
+                    </td>
+                    <td>672ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stop-circle"></i> Tests
+                        Finished
+                    </td>
+                    <td>Oct 06, 2023 14:53:11</td>
+                    <td>
+                        <i class="bi bi-stopwatch-fill"></i> Total
+                        Execution Time
+                    </td>
+                    <td>34s</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+                                                        <h3><i class="bi bi-gear"></i> Automated Tests</h3>
+
+                                                            <table class="scenario-result-table table" id="scenario-results">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>Feature</th>
+                                                                    <th class="test-name-column">Scenario</th>
+                                                                    <th>Context</th>
+                                                                    <th>Steps</th>
+                                                                    <th>Started</th>
+                                                                    <th>Total Duration</th>
+                                                                    <th>Result</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="0b16f9df509b385ac663683d34563b92c23b51e5d59988232f24d1438db1c367.html">[Positive] - CART_ GET all detail data cart with valid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:36</td>
+                                                                            <td>3s 438ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="573e3e8a127589e7542fdc101eedfbb078dff141be5099595fb4762e0f47c4a0.html">[Negative] - CART_GET all detail data cart with invalid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:39</td>
+                                                                            <td>852ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="ba6df3c023d50b0f58a220989620ca288bfee7dc8f81571d31aa0ff9694b9a9b.html">[Positive] - CART_GET a single cart with valid url</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:40</td>
+                                                                            <td>1s 078ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="e8034b3d65eefe3505eb14ad09f9756e4c7f3f646afe43342efa80968b9ba57a.html">[Negative] - CART_GET a single cart with invalid url</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:41</td>
+                                                                            <td>557ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="f474dd8688aebaff80d9fbc0c617d5c61ce8496dbb2d2eeb680106dd18311aea.html">[Positive] - CART_GET limit result cart with valid param</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:42</td>
+                                                                            <td>686ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="b001dd0ab09796c80bc74c681320e7e0f9e8cee5445d9d9f2cbc917f7ed8058b.html">[Negative] - CART_GET limit result cart with invalid param</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:43</td>
+                                                                            <td>780ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="9029a1cddb4912d451194be2995a17e2f62323c0600ac65097d3b1dc5802c0ff.html">[Positive] - CART_GET sort result cart in descending with valid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:43</td>
+                                                                            <td>616ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="d78ba2848131eb74585c22b9abdc9a272d892d5ce6af0ad026afddaddcae5b93.html">[Negative] - CART_GET sort result cart in descending with invalid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:44</td>
+                                                                            <td>471ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="7043f437621828a9235d22bc3e63ec86f0c2209397093ab911119c9b0e382aca.html">[Positive] - CART_GET in date range cart with valid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:45</td>
+                                                                            <td>638ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="318fa064284b1ca099049e7c87e7425710c2cc97ba796ea05e2bf0c7f20ddbac.html">[Negative] - CART_GET in date range cart with invalid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:45</td>
+                                                                            <td>772ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result FAILURE">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="7a28eed43d752e30798c0a8bd0e214fd583f18e10d0042e19d4d2f18bb5913e9.html">[Negative] - CART_GET user cart with invalid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:46</td>
+                                                                            <td>638ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon ' title='FAILURE'></i></a> <span style="display:none">FAILURE</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="1afede906202633df78a088104e5a946857499792292d3dc4320103251a06d61.html">[Positive] - CART_POST new cart with valid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:47</td>
+                                                                            <td>565ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="0118af151c51e9d4ccdf5f7f76b3b6c2f9cac3f2d914c395c97b48fd3a04ba7e.html">[Negative] - CART_POST new cart with invalid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:47</td>
+                                                                            <td>468ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="6b6e57623726613ac09ffb0024e8bc458109c09abdfbdb0b4f8623f63c7bb0e4.html">[Positive] - CART_PUT existing cart with valid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:48</td>
+                                                                            <td>469ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="797c36357432ffab2180fa1345462f1bd01df3a71b9da487acc824d991b6399a.html">[Negative] - CART_PUT existing cart with invalid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:48</td>
+                                                                            <td>444ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="ee30e5f7435c3d8e0f5e220e69e42bbc58b012e84af8e88d565433f2e5566f3a.html">[Positive] - CART_DELETE existing cart with valid id</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:49</td>
+                                                                            <td>623ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="f9cce15012b3116738457345583051a7c630b66a89ddb51bbd7ba9c3abd75685.html">Cart</a>
+                                                                            </td>
+                                                                            <td><a href="8b4fed880c5b546503437a4558d8c631a65364b85518a5187a67d4ce6e9cb8bc.html">[Negative] - CART_DELETE existing cart with invalid id</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:49</td>
+                                                                            <td>450ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="c9a424a200f6e743596d0b5f216d1e55539e147d8a1cd3afdebb62ee4542d2f4.html">Login</a>
+                                                                            </td>
+                                                                            <td><a href="d77b750ab7fc01b01c3b34193de5d2737e2c01577291c865b0cc068ad61d2a03.html">[Positive] - LOGIN_As admin I have be able to login</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:50</td>
+                                                                            <td>1s 228ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="c9a424a200f6e743596d0b5f216d1e55539e147d8a1cd3afdebb62ee4542d2f4.html">Login</a>
+                                                                            </td>
+                                                                            <td><a href="d88924fa9d132662b6f43e81c2d8b61c8d919a494a33a0277d3549bf08d7ea90.html">[Negative] - LOGIN_As admin I can't login with missing data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:51</td>
+                                                                            <td>459ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="23a92d1c31bfc8f0df0f41af463e81ecdff337aeff8c156b0f98fd0e4c7bc9c1.html">[Positive] - PRODUCT_GET all detail data product</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:51</td>
+                                                                            <td>463ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="945a7e786e0a05b2365b2f5083310897a448e02870a9c00263348b84d03526ec.html">[Negative] - PRODUCT_GET all detail data product with invalid url</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:52</td>
+                                                                            <td>450ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="dbf053f00426355d6336e27dc4bc29f92534a8640cc8fbb4e8c10f3fcc0db695.html">[Positive] - PRODUCT_GET a single product with valid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:52</td>
+                                                                            <td>441ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="3570c011fe279bea231c9c0d073b6b91363d9cb3be2075660eddbc3a49a7c188.html">[Negative] - PRODUCT_GET a single product with invalid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:53</td>
+                                                                            <td>445ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="e858b9a47c3bb86eff039cdc433e97286e72f4d88b1c25d644f5c954f266ff61.html">[Positive] - PRODUCT_GET limit result product with valid param</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:53</td>
+                                                                            <td>445ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="b2787416e1e04721cafd02e5f52d1d5358f2efca5a9b9763cfc9b9496f4c90a4.html">[Negative] - PRODUCT_GET limit result product with invalid param</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:54</td>
+                                                                            <td>437ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="bc50a02aa8fe8d199157fc9ba5a413f6ec755b37b3298b6ea87ab8c247015e3a.html">[Positive] - PRODUCT_GET sort result product in descending with valid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:54</td>
+                                                                            <td>480ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="580e45c5ef99994866c7b82af5799234baac192c248172ee789131b33af9766d.html">[Negative] - PRODUCT_GET sort result product in descending with invalid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:55</td>
+                                                                            <td>787ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="cf10f155f94353f082cc5fee25c1eb276f80894d24f8eb9ee3e8e4725cb1d7cc.html">[Positive] - PRODUCT_GET all categories product with valid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:55</td>
+                                                                            <td>443ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="96499e814c05915c919ebd6aed71d6316ff6ec9e0c5691bbd0259e1eb90d79b8.html">[Negative] - PRODUCT_GET all categories product with invalid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:56</td>
+                                                                            <td>757ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="98d50440a611d3008d2808a786a45accf4618cd291f5742e67c473a08a8f8e63.html">[Positive] - PRODUCT_GET in category product with valid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:57</td>
+                                                                            <td>627ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="52faea3e227b4654355fcc79c1497818ffb53cc9be544338bc19f77b80488274.html">[Negative] - PRODUCT_GET in category product with invalid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:57</td>
+                                                                            <td>1s 102ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="0a081389f503b2361004b6ad635390c734a647660f8825a2800545f933fb6f8f.html">[Positive] - PRODUCT_POST new product with valid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:52:58</td>
+                                                                            <td>524ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="2d0e16d84d81ba91ed15622380ced07096761adedfb5ca42f5f89db9e8ed0668.html">[Negative] - PRODUCT_POST new product with invalid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:52:59</td>
+                                                                            <td>754ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="a405710f967ff0d6952dc1be45d46b3ee317d50a0109a177a7412a6b6cc67117.html">[Positive] - PRODUCT_PUT existing product with valid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:00</td>
+                                                                            <td>452ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="886b18f117060fc99222e3a140409ed8c4d17d993d15fbb81a5c72de82f9ecee.html">[Negative] - PRODUCT_PUT existing product with invalid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:00</td>
+                                                                            <td>541ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="360b9788bf937988051d1848ac880e6779c4175201108cd99cf4db5cd0c7ec0f.html">[Positive] - PRODUCT_DELETE existing product with valid id</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:01</td>
+                                                                            <td>613ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="9efa253294adc49560770f51437511fe8f103f024d85a5948dea7a632092da13.html">Product</a>
+                                                                            </td>
+                                                                            <td><a href="6853195d61edaea3ff86cbc453414a835c79439d02bae7ef7572f28a7a07b6c8.html">[Negative] - PRODUCT_DELETE existing cart with invalid id</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:01</td>
+                                                                            <td>452ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="e23a4f1e7ca455a6c44094c7f325032f33175e9cbd4ea97fcaf10e78ce976cd6.html">[Positive] - USER_ GET all detail data user with valid url</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:02</td>
+                                                                            <td>642ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="62f14c7d26de8a7bfd4fa775dc65e391300e42d28f79f8083383d88fb27018a1.html">[Negative] - USER_GET all detail data cart with invalid url</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:02</td>
+                                                                            <td>436ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="a8a4a5eda9114fabd497f4427589fc1b3adc53a2b4bc8facb982ef37c454f14b.html">[Positive] - USER_GET a single user with valid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:03</td>
+                                                                            <td>702ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="e1dedcadea302bcd1e18634f064041a63a425097ae5249120628cb14c3073739.html">[Negative] - USER_GET a single user with invalid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:04</td>
+                                                                            <td>439ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="124640d489facd98822dfc5988b1d8cd50f9f323fe1ac9fdebd94f12d1e318a0.html">[Positive] - USER_GET limit result with valid param</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:04</td>
+                                                                            <td>615ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="86db45af4efa6708baf2bfb77bebdb7359223f22f2e454e2da487f117b22ca42.html">[Negative] - USER_GET limit result with invalid param</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:05</td>
+                                                                            <td>919ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="67405a7d440f175fae26856dd93cce7af07937275c0084e27dde95b57d3543bb.html">[Positive] - USER_GET sort result user in descending with valid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:06</td>
+                                                                            <td>629ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="04754da63576cabebf48d6034be1863e1849f0ac7caf929910225c53ff0e03f4.html">[Negative] - USER_GET sort result user in descending with invalid endpoint</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:06</td>
+                                                                            <td>442ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="47faf6b278f30d250050f868aee7f4be9533692376bc1c69a345158d176b6263.html">[Positive] - USER_POST new product with valid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:07</td>
+                                                                            <td>632ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="0d2714083633d4406d49471b061b5c4f271b3246db52e6fa243950c5889d7157.html">[Negative] - USER_POST new product with invalid data</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:07</td>
+                                                                            <td>530ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="ecd46187efdd36cafbde67f54be96da7e5152f7b6ac69aacefac1576a47e9367.html">[Positive] - USER_PUT existing user with valid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:08</td>
+                                                                            <td>717ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="150e2dba7f45fdc4069692cf2550448216a811534d9ce09fa092376c2b697968.html">[Negative] - USER_PUT existing user with invalid endpoints</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>4</td>
+                                                                            <td>14:53:09</td>
+                                                                            <td>439ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="ea2d26dcaa7ca2082e79bb884bab690aab652e858763874ebee9ead7ebca4f2c.html">[Positive] - USER_DELETE existing user with valid id</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:09</td>
+                                                                            <td>921ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="scenario-result SUCCESS">
+                                                                            <td>
+                                                                                    <a href="46d4cf94fe6ccba4640dabdf9078fc3e85b9a5586f48f036acbeb8e17b8515b8.html">User</a>
+                                                                            </td>
+                                                                            <td><a href="2c843dc09c99e4fcf34a14236026d08d85279450b7f0f06c5ddba2f1c74bb2f3.html">[Negative] - USER_DELETE existing user with invalid id</a></td>
+                                                                            <td><span class='context-icon'><i class='bi bi-windows' title='Windows'></i></span><span style="display:none">Windows</span> </td>
+                                                                            <td>3</td>
+                                                                            <td>14:53:10</td>
+                                                                            <td>780ms</td>
+                                                                            <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                </tbody>
+                                                            </table>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="bi bi-hand-index-thumb"></i> Manual Tests</h3>
+
+                                                            No manual tests were recorded
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="beforefooter"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 3.6.12</span>
+        </div>
+    </div>
+</div>
+
+<!-- Chart data -->
+    <!-- PIE CHART -->
+    <script>
+
+        // The results pie chart
+        const outcomeChartCtx = document.getElementById('resultChart');
+
+        // Options define for display value on top of bars
+        const outcomeDetailsReports = [
+            { title: 'Passing Test Cases', link: "01f5288b80adbd3af52a8ed68a4a616d3164f750229f80da1ef344382d948835.html" },
+            { title: 'Pending Test Cases', link: "bde4fca42ca8baa0fe2eac76a241c84327dfe4ca903a1daa7cae83a1035d4745.html" },
+            { title: 'Ignored Test Cases', link: "c1b352893c3d69e59317fd825f20a75f987a859afe98fb4434f47dce70c48fd4.html" },
+            { title: 'Skipped Test Cases', link: "7409dbb9985b960343780b303d8028480bd55e9aebd855c90eff0a000e21ccc8.html" },
+            { title: 'Aborted Test Cases',  link: "91152e032be7fe762aa6823d6424278e2c72efeb7622a5e63c7bf5980b4fd8a0.html"},
+            { title: 'Failed Test Cases', link: "da5b0c51b332adf0ef993a9f086d6a1b51a3d800248ec6ae281212092f35bd37.html"  },
+            { title: 'Broken Test Cases', link: "c8a926210aeff57f8aa7ea799262d4b730915a909cd5ecd6a705b1fa13bc7aa8.html"    },
+            { title: 'Compromised Test Cases',  link: "02dd8f8ada4c10b8ebb5c1f309605a6f7c147adc21bcf5c55829855ba045ff03.html" },
+        ]
+        const outcomeData = {
+            labels: ['Passing Test Cases', 'Pending Test Cases', 'Ignored Test Cases', 'Skipped Test Cases', 'Aborted Test Cases', 'Failed Test Cases', 'Broken Test Cases', 'Compromised Test Cases','Undefined Test Cases'],
+            datasets: [{
+                label: 'Test Results',
+                fill: false,
+                data: [50,0,0,0,0,1,0,0],
+                backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
+                borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
+                borderWidth: 1,
+            }]
+        }
+        const outcomeOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                },
+                // Change options for ALL labels of THIS CHART
+                datalabels: {
+                    color: '#444444',
+                    'font.weight': 'bold',
+                    formatter: (value, ctx) => {
+                        let sum = 0;
+                        let dataArr = ctx.chart.data.datasets[0].data;
+                        dataArr.map(data => {
+                            sum += data;
+                        });
+                        let percentage = (value * 100 / sum).toFixed(0) + "%";
+                        if (percentage === '0%' || percentage === 'NaN%') {
+                            return '';
+                        } else {
+                            return percentage;
+                        }
+                    },
+                },
+            }
+        }
+
+        const outcomeChart = new Chart(outcomeChartCtx, {
+            type: 'doughnut',
+            data: outcomeData,
+            options: outcomeOptions,
+            plugins: [
+                {
+                    id: 'text',
+                    beforeDraw: function (chart, a, b) {
+                        var width = chart.width,
+                            height = chart.height,
+                            ctx = chart.ctx;
+
+                        ctx.restore();
+                        var fontSize = (height / 200).toFixed(1);
+                        ctx.font = fontSize + "em sans-serif";
+                        ctx.textBaseline = "middle";
+
+                        var text = "98%"
+                        textX = 10 + Math.round((width - ctx.measureText(text).width) / 2);
+                        textY = (height / 2) - 40;
+
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
+        });
+
+        function clickHandler(click) {
+            const points = outcomeChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+            if (points.length) {
+                const firstPoint = points[0];
+                window.open(outcomeDetailsReports[firstPoint.index].link, "_self")
+
+            }
+        }
+        outcomeChartCtx.onclick = clickHandler;
+    </script>
+    <!-- END PIE CHART -->
+
+    <!-- SUMMARY BAR CHART -->
+    <script>
+
+        // The Severity bar chart
+        const severityChartCtx = document.getElementById('severityChart');
+
+        // Options define for display value on top of bars
+
+        const severityDetailsReports = [
+            { title: 'Passing Scenarios', link: "01f5288b80adbd3af52a8ed68a4a616d3164f750229f80da1ef344382d948835.html" },
+            { title: 'Pending Scenarios', link: "bde4fca42ca8baa0fe2eac76a241c84327dfe4ca903a1daa7cae83a1035d4745.html" },
+            { title: 'Ignored Scenarios', link: "c1b352893c3d69e59317fd825f20a75f987a859afe98fb4434f47dce70c48fd4.html" },
+            { title: 'Skipped Scenarios', link: "7409dbb9985b960343780b303d8028480bd55e9aebd855c90eff0a000e21ccc8.html" },
+            { title: 'Aborted Scenarios',  link: "91152e032be7fe762aa6823d6424278e2c72efeb7622a5e63c7bf5980b4fd8a0.html"},
+            { title: 'Failed Scenarios', link: "da5b0c51b332adf0ef993a9f086d6a1b51a3d800248ec6ae281212092f35bd37.html"  },
+            { title: 'Broken Scenarios', link: "c8a926210aeff57f8aa7ea799262d4b730915a909cd5ecd6a705b1fa13bc7aa8.html"    },
+            { title: 'Compromised Scenarios',  link: "02dd8f8ada4c10b8ebb5c1f309605a6f7c147adc21bcf5c55829855ba045ff03.html" },
+        ]
+        const severityData = {
+            labels: ['Passing', 'Pending', 'Ignored', 'Skipped', 'Aborted', 'Failed', 'Broken', 'Compromised'],
+            datasets: [
+                {
+                    label: 'Automated',
+                    data: [50,0,0,0,0,1,0,0],
+                    backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
+                    borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Manual',
+                    data: [0,0,0,0,0,0,0,0],
+                    backgroundColor: ['rgba(153,204,51,0.25)','rgba(165, 199, 238, 0.25)','rgba(168, 168, 168, 0.25)','rgba(238, 224, 152, 0.375)','rgba(255, 153, 102, 0.25)','rgba(255, 22, 49, 0.25)','rgba(255, 97, 8, 0.25)','rgba(255, 104, 255, 0.25)','rgba(83, 50, 168, 0.25)'],
+                    borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
+                    borderWidth: 1
+                },
+
+            ]
+        }
+        const severityOptions = {
+            responsive: true,
+            skipNull: true,
+            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true,
+                }
+            },
+            plugins: {
+                // Change options for ALL labels of THIS CHART
+                datalabels: {
+                    color: '#444444',
+                    'font.weight': 'bold',
+                    formatter: (value, ctx) => {
+                        if (value === 0) {
+                            return '';
+                        } else {
+                            return value;
+                        }
+                    },
+                }
+            }
+        }
+        const severityChart = new Chart(severityChartCtx, {
+            type: 'bar',
+            data: severityData,
+            options: severityOptions
+        });
+
+        function clickHandler(click) {
+            const points = severityChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+            if (points.length) {
+                const firstPoint = points[0];
+                window.open(severityDetailsReports[firstPoint.index].link, "_self")
+
+            }
+        }
+        severityChartCtx.onclick = clickHandler;
+    </script>
+    <!-- END SUMMARY CHART -->
+
+    <!-- DURATION CHART -->
+    <script>
+
+        // Options define for display value on top of bars
+        const durationDetailsReports = [
+                {title: "Under 1 second", link: "2a5b6a7be0f08df02d8ab0b4d4c68648c2695c6c7ef0658c71de4d42b1415b18.html"},
+                {title: "1 to 10 seconds", link: "6c5512236937b92cd7a296b24edb966c2bd94be46b8910f8b129a42d6150eb25.html"},
+                {title: "10 to 30 seconds", link: "34658a1663fcf042bd7acb3325affbe4e647c8acd84d0228be2f52e1381e61b9.html"},
+                {title: "30 to 60 seconds", link: "5698da923f295f46ce5ab64ced2311fc60caa4e36b32112606d3adcfdce3f60b.html"},
+                {title: "1 to 2 minutes", link: "c68fd6639ab29c4b0ac02a78bc39f4e22557bcaa40ef14c903ac0e584626edfe.html"},
+                {title: "2 to 5 minutes", link: "3ce388ea8511800032930896a3e5ba2c4f80e46f1a10b143b67009baf212c6a0.html"},
+                {title: "5 to 10 minutes", link: "376e1536bb68812a880e84ca7a0c6d104d541788793f22a36b4462a6a9aaa344.html"},
+                {title: "10 minutes or over", link: "24bba6f5cf4f06c7d46bf8990b86c4fbc1ce4ce201644ddf42661c84031e1c90.html"},
+        ]
+        // The Severity bar chart
+        const durationChartCtx = document.getElementById('durationChart');
+
+        // Options define for display value on top of bars
+
+        const durationData = {
+            labels: ['Under 1 second','1 to 10 seconds','10 to 30 seconds','30 to 60 seconds','1 to 2 minutes','2 to 5 minutes','5 to 10 minutes','10 minutes or over'],
+            datasets: [{
+                label: 'Number of tests per duration',
+                fill: false,
+                data: ['47','4','0','0','0','0','0','0'],
+                backgroundColor: 'rgba(83, 146, 255,0.5)',
+                borderColor: 'rgba(83, 146, 255, 1)',
+            }]
+        }
+        const durationOptions = {
+            responsive: true,
+            plugins: {
+                // Change options for ALL labels of THIS CHART
+                datalabels: {
+                    color: '#444444',
+                    'font.weight': 'bold',
+                    formatter: (value, ctx) => {
+                        if (value > 0) {
+                            return value;
+                        } else {
+                            return '';
+                        }
+                    },
+                },
+                tooltip: {
+                    enabled: true,
+                    usePointStyle: true,
+                    callbacks: {
+                        label: (data) => {
+                            return data.parsed.y + ' tests'
+                        }
+                    },
+                },
+            },
+        }
+
+        const durationChart = new Chart(durationChartCtx, {
+            type: 'bar',
+            data: durationData,
+            options: durationOptions
+        });
+
+        function durationClickHandler(click) {
+            const points = durationChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+            if (points.length) {
+                const firstPoint = points[0];
+                window.open(durationDetailsReports[firstPoint.index].link, "_self")
+
+            }
+        }
+
+        durationChartCtx.onclick = durationClickHandler;
+    </script>
+    <!-- END DURATION CHART -->
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="1" name="Cart" skipped="0" tests="17" time="13.55" timestamp="2023-10-06 02:52:36"><testcase name="[Positive] - CART_ GET all detail data cart with valid endpoints"/><testcase name="[Negative] - CART_GET all detail data cart with invalid endpoints"/><testcase name="[Positive] - CART_GET a single cart with valid url"/><testcase name="[Negative] - CART_GET a single cart with invalid url"/><testcase name="[Positive] - CART_GET limit result cart with valid param"/><testcase name="[Negative] - CART_GET limit result cart with invalid param"/><testcase name="[Positive] - CART_GET sort result cart in descending with valid endpoint"/><testcase name="[Negative] - CART_GET sort result cart in descending with invalid endpoint"/><testcase name="[Positive] - CART_GET in date range cart with valid data"/><testcase name="[Negative] - CART_GET in date range cart with invalid data"/><testcase name="[Negative] - CART_GET user cart with invalid data"><failure message="1 expectation failed.&#10;JSON path status doesn't match.&#10;Expected: error&#10;  Actual: &lt;[null]&gt;&#10;" type="java.lang.AssertionError">1 expectation failed.
+JSON path status doesn't match.
+Expected: error
+  Actual: &lt;[null]&gt;
+</failure><system-err>1 expectation failed.
+JSON path status doesn't match.
+Expected: error
+  Actual: &lt;[null]&gt;
+&#13;
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)&#13;
+io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)&#13;
+io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:270)&#13;
+io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:117)&#13;
+io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)&#13;
+CodeCompetence2@1.0-SNAPSHOT/starter.login.Cart.lambda$receiveInvalidDataWithUserCart$18(Cart.java:245)&#13;
+net.serenitybdd.rest.SerenityRest.restAssuredThat(SerenityRest.java:626)&#13;
+CodeCompetence2@1.0-SNAPSHOT/starter.login.Cart.receiveInvalidDataWithUserCart(Cart.java:245)&#13;
+CodeCompetence2@1.0-SNAPSHOT/starter.stepdefinition.CartSteps.receiveInvalidDataWithUserCart(CartSteps.java:190)&#13;
+io.cucumber.java.Invoker.doInvoke(Invoker.java:66)&#13;
+io.cucumber.java.Invoker.invoke(Invoker.java:24)&#13;
+io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)&#13;
+io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)&#13;
+io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)&#13;
+io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)&#13;
+io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84)&#13;
+io.cucumber.core.runner.TestStep.run(TestStep.java:56)&#13;
+io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)&#13;
+io.cucumber.core.runner.TestCase.run(TestCase.java:84)&#13;
+io.cucumber.core.runner.Runner.runPickle(Runner.java:75)&#13;
+io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:130)&#13;
+io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)&#13;
+io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:130)&#13;
+io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:144)&#13;
+io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:28)&#13;
+io.cucumber.junit.FeatureRunner.run(FeatureRunner.java:137)&#13;
+io.cucumber.junit.CucumberSerenityRunner.runChild(CucumberSerenityRunner.java:259)&#13;
+io.cucumber.junit.CucumberSerenityRunner.runChild(CucumberSerenityRunner.java:59)&#13;
+</system-err></testcase><testcase name="[Positive] - CART_POST new cart with valid data"/><testcase name="[Negative] - CART_POST new cart with invalid data"/><testcase name="[Positive] - CART_PUT existing cart with valid data"/><testcase name="[Negative] - CART_PUT existing cart with invalid data"/><testcase name="[Positive] - CART_DELETE existing cart with valid id"/><testcase name="[Negative] - CART_DELETE existing cart with invalid id"/></testsuite>

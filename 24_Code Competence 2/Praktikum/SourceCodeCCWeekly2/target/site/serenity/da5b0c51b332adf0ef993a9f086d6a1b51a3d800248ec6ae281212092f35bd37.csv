@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Cart","[Negative] - CART_GET user cart with invalid data","FAILURE","2023-10-06T14:52:46.4861207+07:00[Asia/Bangkok]","0.0","0.64"

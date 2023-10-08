@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Cart","[Positive] - CART_ GET all detail data cart with valid endpoints","SUCCESS","2023-10-06T14:52:36.4877013+07:00[Asia/Bangkok]","0.0","3.44"
+"Cart","[Positive] - CART_GET a single cart with valid url","SUCCESS","2023-10-06T14:52:40.8102955+07:00[Asia/Bangkok]","0.0","1.08"
+"Login","[Positive] - LOGIN_As admin I have be able to login","SUCCESS","2023-10-06T14:52:50.2399978+07:00[Asia/Bangkok]","0.0","1.23"
+"Product","[Negative] - PRODUCT_GET in category product with invalid endpoint","SUCCESS","2023-10-06T14:52:57.7892114+07:00[Asia/Bangkok]","0.0","1.1"

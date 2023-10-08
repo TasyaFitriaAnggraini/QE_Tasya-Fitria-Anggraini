@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="0" name="Login" skipped="0" tests="2" time="1.69" timestamp="2023-10-06 02:52:50"><testcase name="[Positive] - LOGIN_As admin I have be able to login"/><testcase name="[Negative] - LOGIN_As admin I can't login with missing data"/></testsuite>
