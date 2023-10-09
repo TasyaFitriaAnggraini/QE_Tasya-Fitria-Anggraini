@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "74BF8E64E06FE60405A996ECA912BD65",
+  "keywordClasses": [
+    {
+      "name": "LoginInvalid",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}
