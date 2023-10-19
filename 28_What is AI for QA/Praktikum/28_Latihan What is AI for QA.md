@@ -6,7 +6,7 @@ Link Spreadsheet Manual: https://docs.google.com/spreadsheets/d/1_NL9njjlGMjAHrm
 
 Link Spreadsheet use AI: https://docs.google.com/spreadsheets/d/1DH8zZC0Mx0YrHGUw3w0D1FeDxvf8-CR6g6gMy8Cpons/edit?usp=sharing
 
-## Soal Perkenalan AI & OpenAI
+## What is AI for QA
 
 1. Apakah proses testing secara manual perlu dilakukan meskipun tools yang memanfaatkan artificial intelligence sudah dikembangkan? Jelaskan alasannya!
 
