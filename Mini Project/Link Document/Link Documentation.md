@@ -1,6 +1,6 @@
 # Link Documentation - Mini Project
 
-Source Code : 
+Source Code : https://drive.google.com/drive/folders/10kbWxdp6RKpABIiKGrM2QN17UzL_wyh-?usp=drive_link
 
 Documentation Report : https://drive.google.com/drive/folders/1mLJwa65CE45gkSWsFSssRpDipXRLuJ0a?usp=drive_link, https://drive.google.com/drive/folders/15m1RJqyOfI2qK3U70U_3uau-AZ8BEtcE?usp=drive_link, https://drive.google.com/drive/folders/1V8_CUhIbmYAHC7GhsuURQVR4pwgKq_PR?usp=drive_link, https://drive.google.com/drive/folders/1rkoy--3lUS-iDypONEOKYAyHYCCSzkWJ?usp=drive_link 
 
@@ -14,6 +14,4 @@ Test Case dan Test Scenario : https://docs.google.com/spreadsheets/d/1jd9adjX0fH
 
 Bug Report : https://docs.google.com/document/d/1Ozfon6yjU6JG8RY2mQ_-pnt4Dj7MOzpC9HhHFDH1CJM/edit?usp=sharing 
 
-CI/CD Web :
-
-CI/CD API :
+CI/CD API :https://github.com/TasyaFitriaAnggraini/CICDAPI-MiniProject 
